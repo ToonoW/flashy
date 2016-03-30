@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flasky - 新主题{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>提交新主题</h1>
+</div>
+<div class="col-md-4">
+    <form action={{ url_for('.topic_upload') }} method="POST" enctype="multipart/form-data">
+       {{ form.csrf_token }}
+        {{ form.title }} {{ form.content }}  {{ form.image }}  {{ form.submit }}
+    </form>
+</div>
+{% endblock %}
