@@ -280,7 +280,7 @@ def topic_upload():
         topic = Topic(title=form.title.data,
                       content=form.content.data)
         topic.author_id = current_user.id
-        form.image.data.save('/Users/wujinwen/documents/Python/flasky/app/static/topic_image/' + form.image.data.filename)
+        form.image.data.save(os.getcwd() + '/app/static/topic_image/' + form.image.data.filename)
         topic.image_url = '/static/topic_image/' + form.image.data.filename
 
         db.session.add(topic)
@@ -307,7 +307,7 @@ def video_upload():
         dirpath = os.path.join(abspath, dirname)
 
         # TODO 更换相对路径
-        dirpath = os.path.join('/Users/wujinwen/documents/Python/flasky/app/static/video', dirname)
+        dirpath = os.path.join(os.getcwd() + '/app/static/video', dirname)
         os.mkdir(dirpath)
 
         filename = 'picture' + get_extname(form.image.data.filename)
