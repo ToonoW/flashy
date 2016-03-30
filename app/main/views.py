@@ -313,9 +313,15 @@ def video_upload():
         filename = 'picture' + get_extname(form.image.data.filename)
         form.image.data.save(os.path.join(dirpath, filename))
         post.image_url = '/static/video/' + dirname + '/' + filename
+
+        filename = 'cover_image' + get_extname(form.cover_image.data.filename)
+        form.cover_image.data.save(os.path.join(dirpath, filename))
+        post.cover_image_url = '/static/video/' + dirname + '/' + filename
+
         filename = 'video' + get_extname(form.video.data.filename)
         form.video.data.save(os.path.join(dirpath, filename))
         post.video_url = '/static/video/' + dirname + '/' + filename
+
 
         db.session.add(post)
         db.session.commit()

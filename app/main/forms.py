@@ -79,6 +79,10 @@ class UploadVedioForm(Form):
         FileRequired(),
         FileAllowed(['jpg', 'png'], '只允许上传图片!')
     ])
+    cover_image = FileField('特色封面图', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+    ])
     video = FileField('选择视频', validators=[FileRequired()])
     category = SelectField(
         '选择分类',

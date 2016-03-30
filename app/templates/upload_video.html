@@ -10,7 +10,12 @@
 <div class="col-md-4">
     <form action={{ url_for('.video_upload') }} method="POST" enctype="multipart/form-data">
        {{ form.csrf_token }}
-        {{ form.title }} {{ form.content }}  {{ form.image }} {{ form.video }} {{ form.category }} {{ form.submit }}
+        {{ form.title }} {{ form.content }}
+        {{ form.image.label }} {{ form.image }}
+        {{ form.cover_image.label }} {{ form.cover_image }}
+        {{ form.video.label }} {{ form.video }}
+        {{ form.category }}
+        {{ form.submit }}
     </form>
 </div>
 {% endblock %}

@@ -298,6 +298,7 @@ class Post(db.Model):
     favor_num = db.Column(db.Integer, default=0)
     play_times = db.Column(db.Integer, default=0)
     image_url = db.Column(db.Text)
+    cover_image_url = db.Column(db.Text, default="none")
     video_url = db.Column(db.Text)
     category = db.Column(db.String(64))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
@@ -329,6 +330,7 @@ class Post(db.Model):
             'favor_num': self.favor_num,
             'play_times': self.play_times,
             'image_url': self.image_url,
+            'cover_image_url': self.cover_image_url,
             'video_url': self.video_url,
             'category': self.category,
             'comments': url_for('api.get_post_comments', id=self.id,
