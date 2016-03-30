@@ -30,6 +30,9 @@ def get_posts():
 @api.route('/posts/query/', methods=['POST'])
 def get_posts_by_query():
     """选择按照播放次数或者收藏数排序，并且有分类挑选"""
+    """
+    category 有 music, movie
+    """
     body = request.json
     category = body.get('category')
     play_times_most = body.get('play_times')

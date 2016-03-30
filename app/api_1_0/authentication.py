@@ -54,6 +54,17 @@ def register():
     email = body.get('email')
     password = body.get('password')
     if username and email and password:
+        if User.query.filter_by(email=email).first():
+            return jsonify({
+                'status': 0,
+                'msg': '邮箱已被占用'
+            })
+        if User.query.filter_by(username=username).first():
+            return jsonify({
+                'status': 0,
+                'msg': '用户名已被占用'
+            })
+
         user = User(
             username=username,
             email=email,
