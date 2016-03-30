@@ -86,3 +86,6 @@ ENV/
 
 # Video and Picture
 app/static/
+migrations
+.idea
+*.sqlite
