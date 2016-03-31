@@ -8,5 +8,5 @@ from ..models import Topic
 
 @api.route('/topic/new/')
 def get_topic():
-    topics = Topic.query.all()
+    topics = Topic.query.order_by('id').limit(5).all()
     return jsonify({'topics': [topic.to_json() for topic in topics]})

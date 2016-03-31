@@ -7,6 +7,17 @@ The commits and tags in this repository were carefully created to match the sequ
 
 
 
+## Category
+
+1. gdmu
+2. life
+3. technology
+4. movie
+5. animation
+6. tv
+
+
+
 ## API List
 
 ### 获取视频列表
@@ -28,8 +39,6 @@ GET:
 * next -- 下一页
 * count -- 视频总数目
 ```
-
-
 
 
 
