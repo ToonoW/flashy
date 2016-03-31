@@ -58,6 +58,28 @@ def get_posts_by_query():
     })
 
 
+@api.route('/posts/homepage/')
+def get_homepage_posts():
+    """提供app首页所有栏目的视频信息"""
+    recommands = Post.query.order_by(Post.play_times.desc()).limit(4).all()
+    gdmus = Post.query.filter(Post.category == 'gdmu').order_by(Post.timestamp.desc()).limit(4).all()
+    lifes = Post.query.filter(Post.category == 'life').order_by(Post.timestamp.desc()).limit(4).all()
+    technologys = Post.query.filter(Post.category == 'technology').order_by(Post.timestamp.desc()).limit(4).all()
+    movies = Post.query.filter(Post.category == 'movie').order_by(Post.timestamp.desc()).limit(4).all()
+    animations = Post.query.filter(Post.category == 'animation').order_by(Post.timestamp.desc()).limit(4).all()
+    tvs = Post.query.filter(Post.category == 'tv').order_by(Post.timestamp.desc()).limit(4).all()
+
+    return jsonify({
+        'msg': '这是首页的所有视频信息接口',
+        'recommand': [recommand.to_json() for recommand in recommands],
+        'gdmu': [gdmu.to_json() for gdmu in gdmus],
+        'life': [life.to_json() for life in lifes],
+        'technology': [technology.to_json() for technology in technologys],
+        'movie': [movie.to_json() for movie in movies],
+        'animation': [animation.to_json() for animation in animations],
+        'tv': [tv.to_json() for tv in tvs]
+    })
+
 
 @api.route('/posts/<int:id>')
 def get_post(id):
