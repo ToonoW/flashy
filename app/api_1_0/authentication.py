@@ -56,12 +56,12 @@ def register():
     if username and email and password:
         if User.query.filter_by(email=email).first():
             return jsonify({
-                'status': 0,
+                'status': 3,
                 'msg': '邮箱已被占用'
             })
         if User.query.filter_by(username=username).first():
             return jsonify({
-                'status': 0,
+                'status': 2,
                 'msg': '用户名已被占用'
             })
 
@@ -73,11 +73,11 @@ def register():
         db.session.add(user)
         db.session.commit()
         return jsonify({
-            'status': 1,
+            'status': 0,
             'msg': '注册成功'
         })
 
     return jsonify({
-        'status': 0,
+        'status': 1,
         'msg': '参数不完整，操作失败'
     })
