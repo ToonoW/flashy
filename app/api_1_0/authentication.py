@@ -1,9 +1,12 @@
 from flask import jsonify, request, g, abort, url_for, current_app
 from flask.ext.httpauth import HTTPBasicAuth
+from flask.ext.login import login_user, logout_user, login_required, \
+    current_user
 from ..models import User, AnonymousUser
 from . import api
 from .. import db
-from .errors import unauthorized, forbidden
+from .errors import unauthorized, forbidde
+
 
 auth = HTTPBasicAuth()
 
@@ -81,3 +84,29 @@ def register():
         'status': 1,
         'msg': '参数不完整，操作失败'
     })
+
+
+@api.route('/login/', methods=['POST'])
+def login():
+    """用户登陆"""
+    body = request.json
+    email = body.get('email')
+    password = body.get('password')
+    user = User.query.filter_by(email=email).first()
+    if user is not None:
+        if user.verify_password(password):
+            login_user(user, remember=True)
+            return jsonify({
+                'status': 0,
+                'msg': '登陆成功'
+            })
+        else:
+            return jsonify({
+                'status': 1,
+                'msg': '邮箱与密码不匹配'
+            })
+    else:
+        return jsonify({
+            'status': 2,
+            'msg': '此邮箱未注册'
+        })
