@@ -5,7 +5,7 @@ from flask.ext.login import login_user, logout_user, login_required, \
 from ..models import User, AnonymousUser
 from . import api
 from .. import db
-from .errors import unauthorized, forbidde
+from .errors import unauthorized
 
 
 auth = HTTPBasicAuth()
