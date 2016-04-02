@@ -8,8 +8,9 @@ from .errors import forbidden
 
 @api.route('/posts/')
 def get_posts():
+    """推荐的接口"""
     page = request.args.get('page', 1, type=int)
-    pagination = Post.query.paginate(
+    pagination = Post.query.order_by(Post.play_times.desc()).paginate(
         page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False)
     posts = pagination.items
@@ -28,7 +29,7 @@ def get_posts():
 
 
 @api.route('/posts/query/<category>/<int:page>')
-def get_posts_by_query(category, page):
+def get_posts_by_query(category, page=1):
     """选择按照播放次数或者收藏数排序，并且有分类挑选"""
     pagination = Post.query.filter(Post.category == category).order_by(Post.timestamp.desc()).paginate(
         page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
