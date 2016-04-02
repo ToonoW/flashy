@@ -5,7 +5,7 @@ from flask.ext.login import login_user, logout_user, login_required, \
 from ..models import User, AnonymousUser
 from . import api
 from .. import db
-from .errors import unauthorized
+from .errors import unauthorized, forbidden
 
 
 auth = HTTPBasicAuth()
@@ -98,7 +98,8 @@ def login():
             login_user(user, remember=True)
             return jsonify({
                 'status': 0,
-                'msg': '登陆成功'
+                'msg': '登陆成功',
+                'username': user.username
             })
         else:
             return jsonify({
