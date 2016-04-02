@@ -27,33 +27,23 @@ def get_posts():
     })
 
 
-@api.route('/posts/query/', methods=['POST'])
-def get_posts_by_query():
+@api.route('/posts/query/<category>/<int:page>')
+def get_posts_by_query(category, page):
     """选择按照播放次数或者收藏数排序，并且有分类挑选"""
-    """
-    category 有 music, movie
-    """
-    body = request.json
-    category = body.get('category')
-    play_times_most = body.get('play_times')
-    favor_most = body.get('favor_most')
-    page = body.get('page', 1)
-    if category:
-        if play_times_most:
-            pagination = Post.query.filter_by(category=category).order_by(Post.play_times.desc()).paginate(
-                page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
-                error_out=False)
-        elif favor_most:
-            pagination = Post.query.filter_by(category=category).order_by(Post.favor_num.desc()).paginate(
-                page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
-                error_out=False)
-        else:
-            return jsonify({'Warning': '请设置play_times或者favor_most'})
-    else:
-        return jsonify({'Warning': '请设置分类'})
+    pagination = Post.query.filter(Post.category == category).order_by(Post.timestamp.desc()).paginate(
+        page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+        error_out=False)
     posts = pagination.items
+    prev = None
+    if pagination.has_prev:
+        prev = url_for('api.get_posts', page=page-1, _external=True)
+    next = None
+    if pagination.has_next:
+        next = url_for('api.get_posts', page=page+1, _external=True)
     return jsonify({
-        'posts': [post.to_json() for post in posts],
+        'videos': [post.to_json() for post in posts],
+        'prev': prev,
+        'next': next,
         'count': pagination.total
     })
 
