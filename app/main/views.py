@@ -320,7 +320,10 @@ def video_upload():
 
         filename = 'video' + get_extname(form.video.data.filename)
         form.video.data.save(os.path.join(dirpath, filename))
+        command = 'ffmpeg -i ' + os.path.join(dirpath, filename) + ' ' + os.path.join(dirpath, 'video.mp4')
+        os.popen(command)
         post.video_url = '/static/video/' + dirname + '/' + filename
+        post.video_url_mp4 = '/static/video/' + dirname + '/video.mp4'
 
 
         db.session.add(post)
