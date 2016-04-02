@@ -57,6 +57,7 @@ def get_homepage_posts():
     lifes = Post.query.filter(Post.category == 'life').order_by(Post.timestamp.desc()).limit(4).all()
     technologys = Post.query.filter(Post.category == 'technology').order_by(Post.timestamp.desc()).limit(4).all()
     movies = Post.query.filter(Post.category == 'movie').order_by(Post.timestamp.desc()).limit(4).all()
+    musics = Post.query.filter(Post.category == 'music').order_by(Post.timestamp.desc()).limit(4).all()
     animations = Post.query.filter(Post.category == 'animation').order_by(Post.timestamp.desc()).limit(4).all()
     tvs = Post.query.filter(Post.category == 'tv').order_by(Post.timestamp.desc()).limit(4).all()
 
@@ -65,6 +66,7 @@ def get_homepage_posts():
         'recommand': [recommand.to_json() for recommand in recommands],
         'gdmu': [gdmu.to_json() for gdmu in gdmus],
         'life': [life.to_json() for life in lifes],
+        'music': [music.to_json() for music in musics],
         'technology': [technology.to_json() for technology in technologys],
         'movie': [movie.to_json() for movie in movies],
         'animation': [animation.to_json() for animation in animations],

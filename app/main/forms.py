@@ -86,6 +86,6 @@ class UploadVedioForm(Form):
     video = FileField('选择视频', validators=[FileRequired()])
     category = SelectField(
         '选择分类',
-        choices=[('gdmu', '今日广医'), ('life', '生活娱乐'), ('technology', '科技'), ('movie', '电影'), ('animation', '动漫'), ('tv', '电视剧')]
+        choices=[('gdmu', '今日广医'), ('life', '生活娱乐'), ('technology', '科技'),('music', '音乐'), ('movie', '电影'), ('animation', '动漫'), ('tv', '电视剧')]
     )
     submit = SubmitField('上传')
