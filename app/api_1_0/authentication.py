@@ -99,7 +99,7 @@ def login():
             return jsonify({
                 'status': 0,
                 'msg': '登陆成功',
-                'username': user.username
+                'user': user.to_json()
             })
         else:
             return jsonify({
