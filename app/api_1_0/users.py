@@ -54,7 +54,7 @@ def get_user_followed_posts(id):
     })
 
 
-@api.route('/user/<int:id>/setset/<sex>')
+@api.route('/user/<int:id>/setsex/<sex>')
 def set_sex(id, sex):
     user = User.query.filter(User.id == id).first()
     if user and (sex in ['男', '女', '保密']):
