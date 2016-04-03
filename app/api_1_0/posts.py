@@ -84,7 +84,9 @@ def get_post(id):
         'video_url': post.video_url,
         'video_url_mp4': post.video_url_mp4,
         'title': post.title,
-        'introduction': post.introduction
+        'introduction': post.introduction,
+        'favor_num': post.favor_num,
+        'play_times': post.play_times
     })
 
 
