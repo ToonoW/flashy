@@ -325,8 +325,7 @@ class Post(db.Model):
             #'url': url_for('api.get_post', id=self.id, _external=True),
             'title': self.title,
             'timestamp': self.timestamp,
-            'author': url_for('api.get_user', id=self.author_id,
-                                                          _external=True),
+            'author': self.author_id,
             'coin_num': self.coin_num,
             'favor_num': self.favor_num,
             'play_times': self.play_times,
@@ -335,8 +334,6 @@ class Post(db.Model):
             'video_url': self.video_url,
             'video_url_mp4': self.video_url_mp4,
             'category': self.category,
-            'comments': url_for('api.get_post_comments', id=self.id,
-                                _external=True),
             'comment_count': self.comments.count()
         }
         return json_post
