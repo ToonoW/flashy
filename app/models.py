@@ -306,6 +306,7 @@ class Post(db.Model):
     cover_image_url = db.Column(db.Text, default="none")
     video_url = db.Column(db.Text)
     video_url_mp4 = db.Column(db.Text)
+    introduction = db.Column(db.Text, default='UP主很懒，还没有视频简介')
     category = db.Column(db.String(64))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 

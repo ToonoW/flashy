@@ -77,7 +77,15 @@ def get_homepage_posts():
 @api.route('/posts/<int:id>')
 def get_post(id):
     post = Post.query.get_or_404(id)
-    return jsonify(post.to_json())
+    return jsonify({
+        'author': post.author_id,
+        'category': post.category,
+        'id': post.id,
+        'video_url': post.video_url,
+        'video_url_mp4': post.video_url_mp4,
+        'title': post.title,
+        'introduction': post.introduction
+    })
 
 
 @api.route('/posts/', methods=['POST'])
