@@ -1,6 +1,7 @@
 from flask import jsonify, request, current_app, url_for
 from . import api
 from ..models import User, Post
+from .. import db
 
 
 @api.route('/users/<int:id>')
@@ -50,4 +51,21 @@ def get_user_followed_posts(id):
         'prev': prev,
         'next': next,
         'count': pagination.total
+    })
+
+
+@api.route('/user/<int:id>/setset/<sex>')
+def set_sex(id, sex):
+    user = User.query.filter(User.id == id).first()
+    if user and (sex in ['男', '女', '保密']):
+        user.sex = sex
+        db.session.commit()
+        return jsonify({
+            'status': 1,
+            'msg': 'modified success'
+        })
+
+    return jsonify({
+        'status': 0,
+        'msg': 'please check your data'
     })
