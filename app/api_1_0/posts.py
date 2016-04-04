@@ -4,7 +4,7 @@ from ..models import Post, Permission
 from . import api
 from .decorators import permission_required
 from .errors import forbidden
-
+import os, time, hashlib
 
 @api.route('/posts/')
 def get_posts():
@@ -110,3 +110,63 @@ def edit_post(id):
     post.body = request.json.get('body', post.body)
     db.session.add(post)
     return jsonify(post.to_json())
+
+
+# 上传视频
+@api.route('/video/upload', methods=['POST'])
+#@login_required
+def video_upload():
+    from ..main.forms import UploadVedioForm_forAPI
+    form = UploadVedioForm_forAPI()
+    if True:
+        post = Post(
+            title = form.title.data,
+            category = form.category.data
+        )
+        post.author_id = 1
+        dirname = form.video.data.filename + (str)(time.time())
+        dirname = tran2md5(dirname)
+        abspath = os.path.abspath('app/static/video')
+        dirpath = os.path.join(abspath, dirname)
+
+        # TODO 更换相对路径
+        dirpath = os.path.join(os.getcwd() + '/app/static/video', dirname)
+        os.mkdir(dirpath)
+
+        filename = 'picture' + get_extname(form.image.data.filename)
+        form.image.data.save(os.path.join(dirpath, filename))
+        post.image_url = '/static/video/' + dirname + '/' + filename
+
+        filename = 'cover_image' + get_extname(form.cover_image.data.filename)
+        form.cover_image.data.save(os.path.join(dirpath, filename))
+        post.cover_image_url = '/static/video/' + dirname + '/' + filename
+
+        filename = 'video' + get_extname(form.video.data.filename)
+        form.video.data.save(os.path.join(dirpath, filename))
+        if not get_extname(form.video.data.filename) == '.mp4':
+            command = 'ffmpeg -i ' + os.path.join(dirpath, filename) + ' ' + os.path.join(dirpath, 'video.mp4')
+            os.popen(command)
+        post.video_url = '/static/video/' + dirname + '/' + filename
+        post.video_url_mp4 = '/static/video/' + dirname + '/video.mp4'
+
+        db.session.add(post)
+        db.session.commit()
+        from flask import jsonify
+        return jsonify({
+            'status': 'success',
+            'video_url': post.video_url
+        })
+    return jsonify({
+        'status': 'error'
+    })
+
+
+def tran2md5(src):
+    m1 = hashlib.md5()
+    m1.update(src.encode('utf-8'))
+    return m1.hexdigest()
+
+
+def get_extname(filename):
+    (name, ext) = os.path.splitext(filename)
+    return ext

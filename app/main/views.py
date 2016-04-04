@@ -292,16 +292,15 @@ def topic_upload():
 
 # 上传视频
 @main.route('/video/upload', methods=['POST', 'GET'])
-#@login_required
+@login_required
 def video_upload():
     form = UploadVedioForm()
-    if True:
+    if form.validate_on_submit():
         post = Post(
             title = form.title.data,
-            #TODO 需要改正为form.category.data
-            category = 'music'
+            category = form.category.data
         )
-        post.author_id = 1
+        post.author_id = current_user.id
         dirname = form.video.data.filename + (str)(time.time())
         dirname = tran2md5(dirname)
         abspath = os.path.abspath('app/static/video')
@@ -330,11 +329,7 @@ def video_upload():
         db.session.add(post)
         db.session.commit()
         flash("视频上传成功")
-        #return redirect(url_for('.video_upload'))
-        from flask import jsonify
-        return jsonify({
-            'status': 'success'
-        })
+        return redirect(url_for('.video_upload'))
     return render_template('upload_video.html', form=form)
 
 
