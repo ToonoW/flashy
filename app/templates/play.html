@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/play.css">
+    <script src="/static/bootstrap/js/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="container-fluid iii">
+    <img src="/static/image/3.png" class="ii">
+</div>
+<nav class="container-fluid navbar navbar-fixed-top"  style="background-color:rgba(56,209,135,.55)">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar" style="background-color:#fff"></span>
+                <span class="icon-bar" style="background-color:#fff"></span>
+                <span class="icon-bar" style="background-color:#fff"></span>
+            </button>
+            <a href="#" class="navbar-brand iml1"  >
+                <img class="iml" alt="Brand" src="/static/image/logo.png">
+            </a>
+            <a href="#" class="navbar-brand title1"  style="font-family: 幼圆" >
+                <div>爱视</div>
+                <p style="font-family:'Comic Sans MS'">Isee</p>
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav na1">
+                <li><a href="#" style="color:#fff;font-family:幼圆;">首页</a></li>
+                <li><a href="#" style="color:#fff;font-family:幼圆;">分享</a></li>
+                <li><a href="#" style="color:#fff;font-family:幼圆;">关于</a></li>
+            </ul>
+            <ul class="nav  navbar-nav navbar-right na2">
+                <li><a href="#" style="color: #fff;font-family:幼圆">登录</a></li>
+                <li><a href="#" style="color: #fff;font-famlily:幼圆">注册</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control has-success search1" placeholder="search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<nav class="navbar nav-tabs nav-justified na" >
+    <div class="container nna">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed btn1" data-toggle="collapse"
+                    data-target="#navbar1" aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar" style="background-color:#38d187"></span>
+                <span class="icon-bar" style="background-color:#38d187"></span>
+                <span class="icon-bar" style="background-color:#38d187"></span>
+            </button>
+            <div class="navbar-collapse collapse na3" id="navbar1">
+                <ul class="nav navbar-nav nb">
+                    <li><a href="#" style="font-family:幼圆">首页</a></li>
+                    <li><a href="#" style="font-family:幼圆">热门</a></li>
+                    <li><a href="#" style="font-family:幼圆">今日广医</a></li>
+                    <li><a href="#" style="font-family:幼圆">生活娱乐</a></li>
+                    <li><a href="#" style="font-family:幼圆">电影</a></li>
+                    <li><a href="#" style="font-family:幼圆">电视剧</a></li>
+                    <li><a href="#" style="font-family:幼圆">动画</a></li>
+                    <li><a href="#" style="font-family:幼圆">音乐</a></li>
+                    <li><a href="#" style="font-family:幼圆">科技</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid pb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 vt">
+                <h3 style="font-family: 微软雅黑">{{ video.title }}</h3>
+            </div>
+        </div>
+        <div class="row vd">
+            <div class="col-md-9 col-sm-12 col-xs-12 vde">
+                <video controls="controls" >
+                    <source  src="http://toonow.cc"{{ video.video_url_mp4 }}/>
+                </video>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12 gr">
+                    <div class="col-md-12 grs">
+                        <h3 class="col-md-8" style="font-family: 微软雅黑">{{ video.username }}</h3>
+                        <button type="button" class="col-md-3 btn btn-sm btn-success vbtn">关注</button>
+                    </div>
+                        <div class="panel col-md-12 grxx">
+                            <div class="panel-heading grx">
+                                <h3 style="font-family: 微软雅黑" class="col-md-3  col-sm-12">选集</h3>
+                            </div>
+                            <div class="panel-body grxb">
+                                <ul class="fj" style="font-family: 微软雅黑">
+                                    <li class="lif"><a href="#">第 1 集&nbsp;</a></li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+                                    <li>&nbsp;</li>
+
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    <div class="container cr">
+        <div class="row "  id="fadeshow1">
+            <div class="col-md-2 col-sm-12 favour">
+                <img src="/static/image/favour.png" class="col-md-6 imf">
+                <h4>{{ video.play_times }}</h4>
+            </div>
+            <div class="col-md-2 col-sm-12 loving">
+                <img src="/static/image/loving.png" class="col-md-6 imf">
+                <h4>{{ video.favor_num }}</h4>
+            </div>
+            <div class="col-md-4 col-sm-12 share">
+                <h4 class="col-md-3" style="font-family: 微软雅黑">分享</h4>
+                <ul class="col-md-9">
+                    <li><a href="#"><img class="ims" src="/static/image/33.png"></a></li>
+                    <li><a href="#"><img class="ims" src="/static/image/66.png"></a></li>
+                    <li><a href="#"><img class="ims" src="/static/image/44.png"></a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-12 discuss">
+                <img src="/static/image/discuss1.png" class="col-md-6 imf1">
+                <h4>433</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row cb">
+        <div class="panel-heading pbx">
+            <h3 style="font-family: 微软雅黑">大家都在看</h3>
+        </div>
+        <div class="panel-body pbx">
+            <div class="row pbxs">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="#"><img src="/static/image/m_1.jpg" class="imj"></a>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="#"><img src="/static/image/m_6.jpg" class="imj"></a>
+                </div>
+                <div class="clearfix visible-xs-block">&nbsp</div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="#"><img src="/static/image/m_13.jpg" class="imj"></a>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="#"><img src="/static/image/m_11.jpg" class="imj"></a>
+                </div>
+            </div>
+            <div class="row pbxs1">
+                <div class="col-md-12">
+                    <img src="/static/image/hupi.png"class="imj">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row cb">
+        <div class="panel-heading pbx1">
+            <h3 style="font-family: 微软雅黑">&clubs;&nbsp;评论&nbsp;&clubs;</h3>
+        </div>
+        <div class="panel-body pbx1">
+            <div class="row imlo">
+                <div class="col-md-2">
+                    <a href="login.html"><img src="/static/image/unlogin.png" imj1></a>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control ip" placeholder="在这里说两句吧...">
+                    <hr>
+                    <button type="button" class="btn btn-default disabled">登录提交评论</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3 dica">
+                    <a href="#"><h3 style="font-family: 微软雅黑" class="hhh">所有评论
+                        <span class="badge bd">0</span></h3></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="container-fluid panel-footer ffoot">
+    <div class="container">
+        <div class="col-md-4 col-xs-12 ll">
+            <h4 class="ftitle">isee</h4>
+            <div class="content fcontent">
+                <ul class="flinks">
+                    <li><a href="#" style="font-family: 幼圆;">关于我们</a></li>
+                    <li><a href="#" style="font-family: 幼圆;">联系我们</a></li>
+                    <li><a  href="#" style="font-family: 幼圆;">视频、图片来源</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 ll">
+            <h4 class="ftitle" style="font-family: 幼圆;">友情链接</h4>
+            <div class="content fcontent">
+                <div class="ya">
+                    <a class="ca" href="#" style="font-family: 幼圆;">bootstrap中文网</a>
+                    <a class="ca1" href="#" style="font-family: 幼圆;">百度</a>
+                </div>
+                <div class="row imtitle">
+                    <a href="#"><img class="imm" src="/static/image/44.png"></a>
+                    <a href="#" class="ca2"><img class="imm" src="/static/image/33.png"></a>
+                    <a href="#" class="ca2"><img class="imm" src="/static/image/66.png"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 ll">
+            <h4 class="ftitle" style="font-family: 幼圆;">帮助</h4>
+            <div class="content fcontent">
+                <ul class="flinks">
+                    <li><a href="#" style="font-family: 幼圆;">帮助中心</a></li>
+                    <li><a href="#" style="font-family: 幼圆;">我们的技术</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="panel-footer ff">
+    Copyright&copy;LWLXL
+</div>
+</body>
+</html>
