@@ -35,16 +35,15 @@ def get_posts_by_query(category, page=1):
         page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False)
     posts = pagination.items
-    prev = None
-    if pagination.has_prev:
-        prev = url_for('api.get_posts', page=page-1, _external=True)
-    next = None
-    if pagination.has_next:
-        next = url_for('api.get_posts', page=page+1, _external=True)
+
+    if category == "recommand":
+        pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
+            page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+            error_out=False)
+        posts = pagination.items
+
     return jsonify({
         'videos': [post.to_json() for post in posts],
-        'prev': prev,
-        'next': next,
         'count': pagination.total
     })
 
