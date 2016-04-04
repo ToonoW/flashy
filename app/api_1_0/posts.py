@@ -123,7 +123,7 @@ def video_upload():
             title = form.title.data,
             category = form.category.data
         )
-        post.author_id = 1
+        post.author_id = 3
         dirname = form.video.data.filename + (str)(time.time())
         dirname = tran2md5(dirname)
         abspath = os.path.abspath('app/static/video')
