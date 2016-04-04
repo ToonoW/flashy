@@ -298,7 +298,8 @@ def video_upload():
     if form.validate_on_submit():
         post = Post(
             title = form.title.data,
-            category = form.category.data
+            #TODO 需要改正为form.category.data
+            category = 'music'
         )
         post.author_id = 1
         dirname = form.video.data.filename + (str)(time.time())
