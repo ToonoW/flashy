@@ -85,8 +85,7 @@ ENV/
 .spyderproject
 
 # Video and Picture
-app/static/video/
-app/static/topic_image/
+app/static/
 migrations
 .idea
 *.sqlite
