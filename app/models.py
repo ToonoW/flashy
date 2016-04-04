@@ -299,7 +299,6 @@ class Post(db.Model):
     body_html = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    author = db.Column(db.Integer, db.ForeignKey('users.id'))
     coin_num = db.Column(db.Integer, default=0)
     favor_num = db.Column(db.Integer, default=0)
     play_times = db.Column(db.Integer, default=0)
