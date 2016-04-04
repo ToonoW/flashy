@@ -337,6 +337,7 @@ class Post(db.Model):
             'play_times': self.play_times,
             'image_url': self.image_url,
             'cover_image_url': self.cover_image_url,
+            'introduction': self.introduction,
             'video_url': self.video_url,
             'video_url_mp4': self.video_url_mp4,
             'category': self.category,
