@@ -301,8 +301,8 @@ def video_upload():
             category = form.category.data
         )
         post.author_id = 1
-        if current_user.id:
-            post.author_id = current_user.id
+        #if current_user.id:
+        #    post.author_id = current_user.id
         dirname = form.video.data.filename + (str)(time.time())
         dirname = tran2md5(dirname)
         abspath = os.path.abspath('app/static/video')
