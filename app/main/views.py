@@ -295,7 +295,7 @@ def topic_upload():
 #@login_required
 def video_upload():
     form = UploadVedioForm()
-    if form.validate_on_submit():
+    if True:
         post = Post(
             title = form.title.data,
             #TODO 需要改正为form.category.data
