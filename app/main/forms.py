@@ -89,3 +89,18 @@ class UploadVedioForm(Form):
         choices=[('gdmu', '今日广医'), ('life', '生活娱乐'), ('technology', '科技'),('music', '音乐'), ('movie', '电影'), ('animation', '动漫'), ('tv', '电视剧')]
     )
     submit = SubmitField('上传')
+
+
+class UploadVedioForm_forAPI(Form):
+    """为接口写的上传视频"""
+    title = StringField('标题', validators=[Required()])
+    image = FileField('封面图', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+    ])
+    cover_image = FileField('特色封面图', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+    ])
+    video = FileField('选择视频', validators=[FileRequired()])
+    category = StringField('分类', validators=[Required()])
