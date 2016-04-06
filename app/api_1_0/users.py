@@ -56,7 +56,7 @@ def get_user_followed_posts(id):
 
 @api.route('/user/<int:id>/setsex/<string:sex>')
 def set_sex(id, sex):
-    user = User.query.filter_by(User.id == id).first()
+    user = User.query.filter(User.id == id).first()
     if user is not None and (sex in ['male', 'female', 'secret']):
         user.sex = sex
         db.session.commit()
@@ -73,7 +73,7 @@ def set_sex(id, sex):
 
 @api.route('/user/<int:id>/setusername/<string:username>')
 def set_username(id, username):
-    user = User.query.filter_by(User.id == id).first()
+    user = User.query.filter(User.id == id).first()
     if user is not None and username is not None:
         user.username = username
         db.session.commit()
