@@ -1,16 +1,43 @@
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}Flasky - Login{% endblock %}
-
-{% block page_content %}
-<div class="page-header">
-    <h1>Login</h1>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/play.css">
+  <script src="/static/bootstrap/js/jquery.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  <title>ISee - 登录</title>
+</head>
+<body>
+<div class="container-fluid imbg1">
+    <img src="/static/image/login_bg.png" class="imbg">
 </div>
-<div class="col-md-4">
-    {{ wtf.quick_form(form) }}
-    <br>
-    <p>Forgot your password? <a href="{{ url_for('auth.password_reset_request') }}">Click here to reset it</a>.</p>
-    <p>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
+<div class="row imlogo1">
+    <div align="center">
+        <img src="/static/image/login_logo.png" class="imlogo">
+    </div>
 </div>
-{% endblock %}
+<div class="row inputl">
+    <div align="center">
+        <input type="text" class="form-control inputl1" placeholder="用户名 / 邮箱">
+    </div>
+</div>
+
+<div class="row inputl2">
+    <div align="center">
+        <input type="password" class="form-control inputl1" placeholder="密码">
+    </div>
+</div>
+<div class="row btnl">
+    <div align="center">
+        <button type="button" class="btn btn-default btnl1" style="font-family: 微软雅黑">登&nbsp;录</button>
+    </div>
+</div>
+<div class="row btnl2">
+    <div align="center">
+        <button type="button" class="btn btn-default btnl3" style="font-family: 微软雅黑"><a href="register.html">注&nbsp;册</a></button>
+    </div>
+</div>
+</body>
+</html>
