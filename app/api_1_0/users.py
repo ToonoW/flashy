@@ -105,3 +105,34 @@ def set_aboutme(id):
         'status': 0,
         'msg': 'please check your data'
     })
+
+
+@api.route('/user/<int:id>/setavatar/', methods=['POST'])
+def headphoto_upload(id):
+    user = User.query.filter(User.id == id).first()
+    image = request.files['image']
+    if user is not None and image is not None:
+        # 保存图片，文件名用hash命名
+        import os, hashlib
+        m1 = hashlib.md5()
+        m1.update(user.email.encode('utf-8'))
+        (name, ext) = os.path.splitext(image.filename)
+        filename = m1.hexdigest() + ext
+        abspath = os.path.abspath('app/static/avatar')
+        filepath = os.path.join(abspath, filename)
+        image.save(filepath)
+
+        # 写入数据库
+        user.avatar_url = '/static/avatar/' + filename
+        db.session.commit()
+
+        return jsonify({
+            'status': 1,
+            'msg': 'upload avatar success',
+            'avatar_url': user.avatar_url
+        })
+
+    return jsonify({
+        'status': 0,
+        'msg': 'fail to upload avatar'
+    })
