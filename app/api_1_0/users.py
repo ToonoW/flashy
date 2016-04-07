@@ -87,3 +87,21 @@ def set_username(id):
         'status': 0,
         'msg': 'please check your data'
     })
+
+
+@api.route('/user/<int:id>/setaboutme/', methods=['POST'])
+def set_aboutme(id):
+    body = request.json
+    about_me = body.get('about_me')
+    user = User.query.filter(User.id == id).first()
+    if user is not None and about_me is not None:
+        user.about_me = about_me
+        db.session.commit()
+        return jsonify({
+            'status': 1,
+            'msg': 'modified success'
+        })
+    return jsonify({
+        'status': 0,
+        'msg': 'please check your data'
+    })
