@@ -71,8 +71,10 @@ def set_sex(id, sex):
     })
 
 
-@api.route('/user/<int:id>/setusername/<string:username>')
-def set_username(id, username):
+@api.route('/user/<int:id>/setusername/', methods=['POST'])
+def set_username(id):
+    body = request.json
+    username = body.get('username')
     user = User.query.filter(User.id == id).first()
     if user is not None and username is not None:
         user.username = username
