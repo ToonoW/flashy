@@ -252,6 +252,7 @@ class User(UserMixin, db.Model):
             'coin_num': self.coin_num,
             'member_since': self.member_since,
             'last_seen': self.last_seen,
+            'avatar_url': self.avatar_url,
             #'posts': url_for('api.get_user_posts', id=self.id, _external=True),
             #'followed_posts': url_for('api.get_user_followed_posts',
             #                          id=self.id, _external=True),
