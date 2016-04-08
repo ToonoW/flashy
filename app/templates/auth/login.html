@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-  <meta charset="UTF-8">
-  <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="/static/css/play.css">
-  <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
-  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-  <title>ISee - 登录</title>
+    <meta charset="UTF-8">
+    <title>ISee - 登录</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div class="container-fluid imbg1">
@@ -15,29 +15,38 @@
 </div>
 <div class="row imlogo1">
     <div align="center">
-        <img src="/static/image/login_logo.png" class="imlogo">
+        <a href="{{ url_for('main.index') }}"><img src="/static/image/login_logo.png" class="imlogo"></a>
     </div>
 </div>
-<div class="row inputl">
-    <div align="center">
-        <input type="text" class="form-control inputl1" placeholder="用户名 / 邮箱">
+<form action="{{ url_for('.login') }}" method="POST">
+    {{ form.csrf_token }}
+    <div class="row inputl">
+        <div align="center">
+            {{ form.email(class="form-control inputl1", placeholder="邮箱") }}
+        </div>
     </div>
-</div>
 
-<div class="row inputl2">
-    <div align="center">
-        <input type="password" class="form-control inputl1" placeholder="密码">
+    <div class="row inputl2">
+        <div align="center">
+            {{ form.password(class="form-control inputl1", placeholder="密码") }}
+        </div>
     </div>
-</div>
-<div class="row btnl">
-    <div align="center">
-        <button type="button" class="btn btn-default btnl1" style="font-family: 微软雅黑">登&nbsp;录</button>
+    <div class="row ck" align="center">
+        <div  class="checkbox ck3">
+            <label>{{ form.remember_me(class="ck2") }}记住我</label>
+            <label class="ck1"><a href="#">忘记密码?</a></label>
+        </div>
     </div>
-</div>
-<div class="row btnl2">
-    <div align="center">
-        <button type="button" class="btn btn-default btnl3" style="font-family: 微软雅黑"><a href="register.html">注&nbsp;册</a></button>
+    <div class="row btnl">
+        <div align="center">
+            {{ form.submit(class="btn btn-default btnl1",  style="font-family: 微软雅黑") }}
+        </div>
     </div>
-</div>
+    <div class="row btnl2">
+        <div align="center">
+            <a href="{{ url_for('auth.register') }}"><button type="button" class="btn btn-default btnl3" style="font-family: 微软雅黑">注&nbsp;册</button></a>
+        </div>
+    </div>
+</form>
 </body>
 </html>

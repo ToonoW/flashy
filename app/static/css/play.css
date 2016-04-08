@@ -37,7 +37,7 @@
 }
 .grxx{
     width:100%;
-    height:305px;
+    height:335px;
     overflow:scroll;
     overflow-x:hidden;
 }
@@ -161,7 +161,7 @@
 .ims:hover{
     opacity:1;
 }
-@media only screen and (max-width: 968px) {
+@media only screen and (max-width: 1000px) {
     #fadeshow1 {
         display: none;
     }
@@ -262,6 +262,23 @@
     background-color: rgba(120, 244, 184, 0.65);
 
 }
+.pz a p{
+    color: #7b7b7b;
+    font-size:1.1em;
+}
+.pz a{
+    text-decoration: none;
+}
+.pz p{
+    font-size:1.2em;
+}
+.pz1{
+    margin-top:30px;
+}
+.pz1 ul li{
+    list-style: none;
+}
+
 
 
 

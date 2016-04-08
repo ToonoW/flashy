@@ -121,5 +121,38 @@ body{
     width:100%;
     margin-top:500px;
 }
+.ck{
+    position:absolute;
+    z-index:10;
+    width:100%;
+    margin-top:380px;
+    font-family:Î¢ÈíÑÅºÚ;
+    color: #606060;
+
+}
+
+.ck1{
+    margin-left:70px;
+}
+.ck1 a{
+    color: #585858;
+}
+.ck1 a:hover{
+    color:#737373;
+    text-decoration: none;
+}
+.ck2{
+    -webkit-appearance: none;
+    width:15px;
+    height:15px;
+    border:3px solid #78f4b8;
+}
+.ck input[type="checkbox"]:checked
+{
+    background-color: #ffaa91;
+}
+
+
+
 
 

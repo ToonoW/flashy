@@ -6,24 +6,24 @@ from ..models import User
 
 
 class LoginForm(Form):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField('邮箱', validators=[Required(), Length(1, 64),
                                              Email()])
-    password = PasswordField('Password', validators=[Required()])
-    remember_me = BooleanField('Keep me logged in')
-    submit = SubmitField('Log In')
+    password = PasswordField('密码', validators=[Required()])
+    remember_me = BooleanField('记住我')
+    submit = SubmitField('登 录')
 
 
 class RegistrationForm(Form):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField('邮箱', validators=[Required(), Length(1, 64),
                                            Email()])
-    username = StringField('Username', validators=[
+    username = StringField('用户名', validators=[
         Required(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
-                                          'Usernames must have only letters, '
-                                          'numbers, dots or underscores')])
-    password = PasswordField('Password', validators=[
+                                          '用户名只能是字母, '
+                                          '数字, 点或者是数字的组合')])
+    password = PasswordField('密码', validators=[
         Required(), EqualTo('password2', message='Passwords must match.')])
-    password2 = PasswordField('Confirm password', validators=[Required()])
-    submit = SubmitField('Register')
+    password2 = PasswordField('确认密码', validators=[Required()])
+    submit = SubmitField('注 册')
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
