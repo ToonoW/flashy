@@ -68,7 +68,7 @@ class UploadTopicForm(Form):
     content = StringField('内容简介', validators=[Required()])
     image = FileField('封面图', validators=[
         FileRequired(),
-        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+        FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], '只允许上传图片!')
     ])
     submit = SubmitField('上传')
 
@@ -77,11 +77,11 @@ class UploadVedioForm(Form):
     title = StringField('标题', validators=[Required()])
     image = FileField('封面图', validators=[
         FileRequired(),
-        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+        FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], '只允许上传图片!')
     ])
     cover_image = FileField('特色封面图', validators=[
         FileRequired(),
-        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+        FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], '只允许上传图片!')
     ])
     video = FileField('选择视频', validators=[FileRequired()])
     category = SelectField(
@@ -96,11 +96,19 @@ class UploadVedioForm_forAPI(Form):
     title = StringField('标题', validators=[Required()])
     image = FileField('封面图', validators=[
         FileRequired(),
-        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+        FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], '只允许上传图片!')
     ])
     cover_image = FileField('特色封面图', validators=[
         FileRequired(),
-        FileAllowed(['jpg', 'png'], '只允许上传图片!')
+        FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], '只允许上传图片!')
     ])
     video = FileField('选择视频', validators=[FileRequired()])
     category = StringField('分类', validators=[Required()])
+
+
+class UploadAvatarForm_forAPI(Form):
+    """为接口写的上传头像的表格"""
+    image = FileField('头像图片', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], '只允许上传图片')
+    ])

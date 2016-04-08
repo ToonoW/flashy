@@ -107,16 +107,21 @@ def set_aboutme(id):
     })
 
 
-@api.route('/user/<int:id>/setavatar/', methods=['POST'])
-def headphoto_upload(id):
+@api.route('/user/<int:id>/setavatar/', methods=['POST', 'GET'])
+def avatar_upload(id):
+    from ..main.forms import UploadAvatarForm_forAPI
+    form = UploadAvatarForm_forAPI()
+    if request.method == 'GET':
+        from flask import render_template
+        return render_template('upload_avatar.html', id=id)
     user = User.query.filter(User.id == id).first()
-    image = request.files['image']
+    image = form.image.data
     if user is not None and image is not None:
         # 保存图片，文件名用hash命名
         import os, hashlib
         m1 = hashlib.md5()
         m1.update(user.email.encode('utf-8'))
-        (name, ext) = os.path.splitext(image.filename)
+        (name, ext) = os.path.splitext(form.image.data.filename)
         filename = m1.hexdigest() + ext
         abspath = os.path.abspath('app/static/avatar')
         filepath = os.path.join(abspath, filename)
