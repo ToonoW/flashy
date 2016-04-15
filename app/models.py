@@ -327,6 +327,10 @@ class Post(db.Model):
             db.session.add(p)
             db.session.commit()
 
+
+    def play_page_url(self):
+        return '/video/play/' + self.id
+
     def to_json(self):
         json_post = {
             'id': self.id,

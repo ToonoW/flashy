@@ -91,8 +91,8 @@
             <div class="col-md-6 col-sm-12" style="font-family: 微软雅黑; padding:0;">
                     {% for time in range(1, 5) %}
                         <div class="col-md-6  col-sm-6 col-xs-6">
-                            <a href="{{ recommands[time].play_page_url }}"><img src="{{ recommands[time].image_url }}" class="im1 img-responsive" title="<{{ recommands[time].category }}>{{ recommands[time].title }}"></a>
-                            <a href="{{ recommands[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ recommands[time].category }}&gt{{ recommands[time].title }}</h5></a>
+                            <a href="{{ recommands[time].play_page_url() }}"><img src="{{ recommands[time].image_url }}" class="im1 img-responsive" title="<{{ recommands[time].category }}>{{ recommands[time].title }}"></a>
+                            <a href="{{ recommands[time].play_page_url() }}" class="txt"><h5 class="txt1 bt1">&lt{{ recommands[time].category }}&gt{{ recommands[time].title }}</h5></a>
                         </div>
                     {% endfor %}
 
@@ -110,14 +110,14 @@
 
             {% for time in range(5, 9) %}
                 <div class="col-md-3 col-sm-6 col-xs-6 section kg1" >
-                <a href="{{ recommands[time].play_page_url }}"><img src="{{ recommands[time].image_url }}" class="img-responsive im5"></a>
+                <a href="{{ recommands[time].play_page_url() }}"><img src="{{ recommands[time].image_url }}" class="img-responsive im5"></a>
                 <div class="yc">
-                    <a href="{{ recommands[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
+                    <a href="{{ recommands[time].play_page_url() }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                     <div class="ttext">
                      <h4 style="font-family:微软雅黑">{{ recommands[time].title }}</h4>
                         <p style="font-family:微软雅黑">{{ recommands[time].introduction }}</p>
                     </div>
-                    <a href="{{ recommands[time].play_page_url }}"><button type="button" class="btn-success btn-xs text">立即播放
+                    <a href="{{ recommands[time].play_page_url() }}"><button type="button" class="btn-success btn-xs text">立即播放
                     </button></a>
                 </div>
             </div>
@@ -137,7 +137,7 @@
 
             {% for time in range(0, 8) %}
                 <div class="col-md-3 col-xs-6 td1">
-                <a href="{{ gdmus[time].play_page_url }}"><img src="{{ gdmus[time].image_url }}" class="im10 img-responsive"></a>
+                <a href="{{ gdmus[time].play_page_url() }}"><img src="{{ gdmus[time].image_url }}" class="im10 img-responsive"></a>
                 <h5 >{{ gdmus[time].title }}</h5>
             </div>
             {% endfor %}
@@ -153,9 +153,9 @@
         </div>
         <div class="row mrow">
             <div class="col-md-6 col-sm-12 section1">
-                <a href="{{ lifes[0].play_page_url }}"><img src="{{ lifes[0].image_url }}" class="im1 img-responsive"></a>
+                <a href="{{ lifes[0].play_page_url() }}"><img src="{{ lifes[0].image_url }}" class="im1 img-responsive"></a>
                 <div class="yc">
-                    <a href="{{ lifes[0].play_page_url }}"><div class="rrsp"><div class="rrsp1"></div></div></a>
+                    <a href="{{ lifes[0].play_page_url() }}"><div class="rrsp"><div class="rrsp1"></div></div></a>
                     <div class="ttext1">
                         <h3 style="font-family: 微软雅黑">{{ lifes[0].title }}</h3>
                         <p style="font-family: 微软雅黑">{{ lifes[0].introduction }}</p>
@@ -167,14 +167,14 @@
 
                     {% for time in range(1, 5) %}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section2">
-                        <a href="{{ lifes[time].play_page_url }}"><img src="{{ lifes[time].image_url }}" class="im1 img-responsive"></a>
+                        <a href="{{ lifes[time].play_page_url() }}"><img src="{{ lifes[time].image_url }}" class="im1 img-responsive"></a>
                         <div class="yc">
-                            <a href="{{ lifes[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
+                            <a href="{{ lifes[time].play_page_url() }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                             <div class="ttext">
                                 <h5 style="font-family: 微软雅黑">{{ lifes[time].title }}</h5>
                                 <p style="font-family: 微软雅黑">{{ lifes[time].introduction }}</p>
                             </div>
-                            <a href="{{ lifes[time].play_page_url }}"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
+                            <a href="{{ lifes[time].play_page_url() }}"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
                         </div>
                         </div>
                     {% endfor %}
@@ -187,12 +187,12 @@
                     <div class="col-md-3 col-xs-6 section6 kg1">
                     <img src="{{ lifes[time].image_url }}" class="im11 img-responsive">
                     <div class="yc">
-                        <a href="{{ lifes[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
+                        <a href="{{ lifes[time].play_page_url() }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                         <div class="ttext">
                             <h4 style="font-family: 微软雅黑">{{ lifes[time].title }}</h4>
                             <p style="font-family: 微软雅黑">{{ lifes[time].introduction }}</p>
                         </div>
-                        <a href="{{ lifes[time].play_page_url }}"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
+                        <a href="{{ lifes[time].play_page_url() }}"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
                     </div>
                     </div>
                 {% endfor %}
@@ -213,7 +213,7 @@
 
                 {% for time in range(0, 2) %}
                     <div class="col-md-12">
-                    <a href="{{ technologys[time].play_page_url }}" class="imh">
+                    <a href="{{ technologys[time].play_page_url() }}" class="imh">
                         <img src="{{ technologys[time].image_url }}" class="im1 img-responsive">
                     </a>
                 </div>
@@ -221,13 +221,13 @@
 
             </div>
             <div class="col-md-6 col-xs-12">
-                <a href="{{ technologys[2].play_page_url }}"><img src="{{ technologys[2].image_url }}" class="im1 img-responsive"></a>
+                <a href="{{ technologys[2].play_page_url() }}"><img src="{{ technologys[2].image_url }}" class="im1 img-responsive"></a>
             </div>
             <div class="col-md-3 col-xs-12" style="padding:0">
 
                 {% for time in range(3, 5) %}
                     <div class="col-md-12">
-                    <a href="{{ technologys[time].play_page_url }}" class="imh">
+                    <a href="{{ technologys[time].play_page_url() }}" class="imh">
                         <img src="{{ technologys[time].image_url }}" class="im1 img-responsive">
                     </a>
                     </div>
@@ -245,8 +245,8 @@
         </div>
         <div class="row mrow" style="font-family: 微软雅黑">
             <div class="col-md-6 col-sm-12 htitle">
-                <a href="{{ animations[0].play_page_url }}"><img src="{{ animations[0].image_url }}" class="im im1 img-responsive"></a>
-                <a href="{{ animations[0].play_page_url }}" class="txt">
+                <a href="{{ animations[0].play_page_url() }}"><img src="{{ animations[0].image_url }}" class="im im1 img-responsive"></a>
+                <a href="{{ animations[0].play_page_url() }}" class="txt">
                     <h3 class="txt1 bt" style="font-family: 幼圆">&lt{{ animations[0].title }}&gt</h3>
                 </a>
             </div>
@@ -255,8 +255,8 @@
 
                     {% for time in range(1, 5) %}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
-                        <a href="{{ animations[time].play_page_url }}"><img src="{{ animations[time].image_url }}" class="im1 img-responsive" title="<时尚>春季新推荐"></a>
-                        <a href="{{ animations[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ animations[time].title }}&gt</h5></a>
+                        <a href="{{ animations[time].play_page_url() }}"><img src="{{ animations[time].image_url }}" class="im1 img-responsive" title="<时尚>春季新推荐"></a>
+                        <a href="{{ animations[time].play_page_url() }}" class="txt"><h5 class="txt1 bt1">&lt{{ animations[time].title }}&gt</h5></a>
                     </div>
                     {% endfor %}
             </div>
