@@ -329,7 +329,7 @@ class Post(db.Model):
 
 
     def play_page_url(self):
-        return '/video/play/' + self.id
+        return '/video/play/' + (str)(self.id)
 
     def to_json(self):
         json_post = {
