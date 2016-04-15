@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="toTop" content="true">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/login.css">
     <link rel="shortcut icon" type="image/x-icon" href="/static/image/isee.png" />
-    <script src="/static/js2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
     <script type="text/javascript" src="/static/js2/toTop.js"></script>
-    <script src="/static/js/jquery.1.4.2-min.js"></script>
     <script src="/static/js/mine.js"></script>
-    <script src="/static/js1/jquery.min.js"></script>
     <script src="/static/js1/jq22.js"></script>
-    <script src="/static/js/jquery-2.2.0.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <title>
         爱视_爱自生活，爱视分享
@@ -32,7 +29,7 @@
                         <span class="icon-bar" style="background-color:#fff"></span>
                     </button>
                     <a href="#" class="navbar-brand iml1"  >
-                        <img class="iml" alt="Brand" src="/static/image/logo.png">
+                        <img class="iml" alt="Brand" src="image/logo.png">
                     </a>
                     <a href="#" class="navbar-brand title1"  style="font-family: 幼圆" >
                         <div>爱视</div>
@@ -46,12 +43,8 @@
                         <li><a href="#" style="color:#fff;font-family:幼圆;">关于</a></li>
                     </ul>
                     <ul class="nav  navbar-nav navbar-right na2">
-                        {% if current_user.is_authenticated %}
-                          <li><a target="_blank" style="color: #fff;font-family:幼圆">{{ current_user.username }}</a></li>
-                        {% else %}
-                          <li><a href="{{ url_for('auth.login')}}" target="_blank" style="color: #fff;font-family:幼圆">登录</a></li>
-                          <li><a href="{{ url_for('auth.register') }}" target="_blank" style="color: #fff;font-famlily:幼圆">注册</a></li>
-                        {% endif %}
+                        <li><a href="{{ url_for('auth.login') }}" target="_blank" style="color: #fff;font-family:幼圆">登录</a></li>
+                        <li><a href="{{ url_for('auth.register') }}" target="_blank" style="color: #fff;font-famlily:幼圆">注册</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" role="search">
                         <div class="form-group">
@@ -72,7 +65,7 @@
             </button>
             <div class="navbar-collapse collapse na3" id="navbar1">
                 <ul class="nav navbar-nav nb">
-                    <li><a href="index.html" style="font-family:幼圆">首页</a></li>
+                    <li><a href="{{ url_for('main.index') }}" style="font-family:幼圆">首页</a></li>
                     <li><a href="GDMU.html" style="font-family:幼圆">今日广医</a></li>
                     <li><a href="#" style="font-family:幼圆">生活娱乐</a></li>
                     <li><a href="movie.html" style="font-family:幼圆">电影</a></li>
@@ -85,38 +78,24 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
     <div class="container content">
         <div class="row htitle mrow">
             <div class="col-md-6 col-xs-12 col-sm-12 htitle1 "style="font-family: 微软雅黑">
-                <a href="#"><img src="{{ recommands[0].image_url }}" class="im" title="<{{ recommands[0].category }}>{{ recommands[0].title }}"></a>
+                <a href="#"><img src="{{ recommands[0].image_url }}" class="im1 img-responsive" title="<{{ recommands[0].category }}>{{ recommands[0].title }}"></a>
                 <a href="#" class="txt">
                     <h3 class="txt1 bt" >&lt{{ recommands[0].category }}&gt{{ recommands[0].title }}</h3>
                 </a>
             </div>
-            <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-            <div class="col-md-6 col-sm-12" style="font-family: 微软雅黑">
-                <div class="row">
-                    <div class="col-md-6  col-sm-6 col-xs-6">
-                        <a href="/video/play/{{ recommand[1].id }}"><img src="/static/image/t_3.jpg" class="im1" title="<生活>抹茶不间断"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt抹茶不间断&gt</h5></a>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <a href="#"><img src="/static/image/t_4.jpg" class="im2" title="<生活>舌尖上的味道"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt生活&gt舌尖上的味道</h5></a>
-                    </div>
-                </div>
-                <div>&nbsp</div>
-                <div class="row">
-                    <div class="col-md-6 col-xs-6">
-                        <a href="#"><img src="/static/image/t_2.jpg" class="im1" title="<娱乐>你好朋友"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt娱乐&gt你好朋友</h5></a>
-                    </div>
-                    <div class="col-md-6 col-xs-6">
-                        <a href="#"><img src="/static/image/t_5.jpg" class="im2" title="<时尚>春季新推荐"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt时尚&gt春季新推荐</h5></a>
-                    </div>
-                </div>
+            <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+            <div class="col-md-6 col-sm-12" style="font-family: 微软雅黑; padding:0;">
+                    {% for time in range(1, 5) %}
+                        <div class="col-md-6  col-sm-6 col-xs-6">
+                            <a href="{{ recommands[time].play_page_url }}"><img src="{{ recommands[time].image_url }}" class="im1 img-responsive" title="<{{ recommands[time].category }}>{{ recommands[time].title }}"></a>
+                            <a href="{{ recommands[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ recommands[time].category }}&gt{{ recommands[time].title }}</h5></a>
+                        </div>
+                    {% endfor %}
+                    
             </div>
         </div>
         <div class="row  imt">
@@ -128,57 +107,23 @@
             </div>
         </div>
         <div class="row mrow mrow1" >
-        <div class="col-md-3 col-sm-6 col-xs-6 section" >
-            <a href="#"><img src="/static/image/h_1.jpg" class="im5"></a>
-            <div class="yc">
-                <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                <div class="ttext">
-                    <h4 style="font-family:微软雅黑">女子天团疯狂来袭</h4>
-                    <p style="font-family:微软雅黑">宇宙第一美少女</p>
-                </div>
-                <a href="#"><button type="button" class="btn-success btn-xs text">立即播放
-                </button></a>
-            </div>
 
-        </div>
-            <div class="col-md-3 col-sm-6 col-xs-6 section">
-                <a href="#"><img src="/static/image/h_2.jpg" class="im5"></a>
+            {% for time in range(5, 9) %}
+                <div class="col-md-3 col-sm-6 col-xs-6 section kg1" >
+                <a href="{{ recommands[time].play_page_url }}"><img src="{{ recommands[time].image_url }}" class="im5"></a>
                 <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
+                    <a href="{{ recommands[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                     <div class="ttext">
-                        <h4 style="font-family:微软雅黑">女子天团疯狂来袭</h4>
-                        <p style="font-family:微软雅黑">宇宙第一美少女</p>
+                     <h4 style="font-family:微软雅黑">{{ recommands[time].title }}</h4>
+                        <p style="font-family:微软雅黑">{{ recommands[time].introduction }}</p>
                     </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放
+                    <a href="{{ recommands[time].play_page_url }}"><button type="button" class="btn-success btn-xs text">立即播放
                     </button></a>
                 </div>
             </div>
-            <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
+            {% endfor %}
 
-            <div class="col-md-3 col-sm-6 col-xs-6 section">
-                <a href="#"><img src="/static/image/h_3.jpg" class="im5"></a>
-                <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                    <div class="ttext">
-                        <h4 style="font-family:微软雅黑">女子天团疯狂来袭</h4>
-                        <p style="font-family:微软雅黑">宇宙第一美少女</p>
-                    </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放
-                    </button></a>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-6 section">
-                <a href="#"><img src="/static/image/h_4.jpg" class="im5"></a>
-                <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                    <div class="ttext">
-                        <h4 style="font-family:微软雅黑">女子天团疯狂来袭</h4>
-                        <p style="font-family:微软雅黑">宇宙第一美少女</p>
-                    </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放
-                    </button></a>
-                </div>
-            </div>
+
     </div>
         <div class="row imt">
             <div class="col-md-3 col-sm-6 col-xs-6 ad">
@@ -189,71 +134,15 @@
             </div>
         </div>
         <div class="row mrow1" style="font-family: 微软雅黑">
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_1.jpg" class="im10"></a>
-               <h5 >春暖花开，情遗广医</h5>
+
+            {% for time in range(0, 8) %}
+                <div class="col-md-3 col-xs-6 td1">
+                <a href="{{ gdmus[time].play_page_url }}"><img src="{{ gdmus[time].image_url }}" class="im10"></a>
+                <h5 >{{ gdmus[time].title }}</h5>
             </div>
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_8.jpg" class="im10"></a>
-                <h5>主持人大赛，尽显大牌风范</h5>
-            </div>
-            <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_6.jpg" class="im10"></a>
-                <h5 >演练消防灭火，保卫校园</h5>
-            </div>
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_3.jpg" class="im10"></a>
-               <h5 >更快，跟高，更远</h5>
-            </div>
+            {% endfor %}
         </div>
-        <div>&nbsp</div>
-        <div class="row mrow" style="font-family: 微软雅黑">
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_2.jpg" class="im10"></a>
-                <h5 >社联文艺展演-韵律协会</h5>
-            </div>
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_7.jpg" class="im10"></a>
-                <h5 >十佳青年教工访谈</h5>
-            </div>
-            <div class="clearfix visible-xs-block">&nbsp</div>
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_4.jpg" class="im10"></a>
-                <h5 >十年社联-嘉年华现场</h5>
-            </div>
-            <div class="col-md-3 col-xs-6 td1">
-                <a href="#"><img src="/static/image/g_5.jpg" class="im10"></a>
-                <h5 >社联文艺展演-街舞队</h5>
-            </div>
-        </div>
-        <div class="row imt">
-            <div class="col-md-3 col-sm-6 col-xs-6 ad">
-                <a href="#"><h3 style="font-family:幼圆">科技</h3></a>
-            </div>
-            <div class="col-md-9 col-sm-6 col-xs-6 ad">
-                <h4 style="font-family: 幼圆"># 改变世界，改变自己 #</h4>
-            </div>
-        </div>
-        <div class="row mrow mrow1" style="font-family: 微软雅黑">
-            <div class="col-md-3 col-xs-12">
-                <a href="#" class="imh">
-                    <img src="/static/image/k_1.jpg" class="im10">
-                </a>
-                <div>&nbsp</div>
-                <a href="#"><img src="/static/image/k_5.jpg" class="im10"></a>
-            </div>
-            <div class="clearfix visible-xs-block">&nbsp</div>
-            <div class="col-md-6 col-xs-12">
-                <a href="#"><img src="/static/image/k_2.jpg" class="im10"></a>
-            </div>
-            <div class="clearfix visible-xs-block">&nbsp</div>
-            <div class="col-md-3 col-xs-12">
-                <a href="#"><img src="/static/image/k_3.jpg" class="im10"></a>
-                <div>&nbsp</div>
-                <a href="#"><img src="/static/image/k_4.jpg" class="im10"></a>
-            </div>
-        </div>
+
         <div class="row imt">
             <div class="col-md-3 col-sm-6 col-xs-6 ad">
                 <a href="#"><h3 style="font-family:幼圆">生活娱乐</h3></a>
@@ -262,149 +151,90 @@
                 <h4 style="font-family: 幼圆"># 一样的生活，不一样的欢乐 #</h4>
             </div>
         </div>
-        <div class="row mrow1">
+        <div class="row mrow">
             <div class="col-md-6 col-sm-12 section1">
-                <a href="#"><img src="/static/image/s_7.jpg" class="im6"></a>
+                <a href="{{ lifes[0].play_page_url }}"><img src="{{ lifes[0].image_url }}" class="im1"></a>
                 <div class="yc">
-                    <a href="#"><div class="rrsp"><div class="rrsp1"></div></div></a>
+                    <a href="{{ lifes[0].play_page_url }}"><div class="rrsp"><div class="rrsp1"></div></div></a>
                     <div class="ttext1">
-                        <h3 style="font-family: 微软雅黑">视频的标题</h3>
-                        <p style="font-family: 微软雅黑">文字说明呀文字说明呀文字说明</p>
+                        <h3 style="font-family: 微软雅黑">{{ lifes[0].title }}</h3>
+                        <p style="font-family: 微软雅黑">{{ lifes[0].introduction }}</p>
                     </div>
                     <a href="#"><button type="button" class="btn-success btn-sm text">立即播放</button></a>
                 </div>
+            </div>
+            <div class="col-md-6 col-sm-12 " style="padding:0">
 
-                <div class="ttext2">
-                    <h4 style="font-family:微软雅黑">视频的标题</h4>
-                </div>
-            </div>
-            <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-            <div class="col-md-6 col-sm-12">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section2">
-                        <a href="#"><img src="/static/image/s_1.jpg" class="im1"></a>
+                    {% for time in range(1, 5) %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section2">
+                        <a href="{{ lifes[time].play_page_url }}"><img src="{{ lifes[time].image_url }}" class="im1"></a>
                         <div class="yc">
-                            <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
+                            <a href="{{ lifes[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                             <div class="ttext">
-                                <h4 style="font-family: 微软雅黑">视频标题</h4>
-                                <p style="font-family: 微软雅黑">文字说明文字说明</p>
+                                <h5 style="font-family: 微软雅黑">{{ lifes[time].title }}</h5>
+                                <p style="font-family: 微软雅黑">{{ lifes[time].introduction }}</p>
                             </div>
-                            <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
+                            <a href="{{ lifes[time].play_page_url }}"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
                         </div>
-                        <div class="ttext3">
-                            <h4 style="font-family:微软雅黑">视频的标题</h4>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section3">
-                        <a href="#"><img src="/static/image/s_3.jpg" class="im1"></a>
-                        <div class="yc">
-                            <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                            <div class="ttext">
-                                <h4 style="font-family: 微软雅黑">视频标题</h4>
-                                <p style="font-family: 微软雅黑">文字说明文字说明</p>
-                            </div>
-                            <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                        </div>
-                        <div class="ttext3">
-                            <h4 style="font-family:微软雅黑">视频的标题</h4>
-                        </div>
-                    </div>
-                </div>
-                <div>&nbsp</div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section4">
-                        <a href="#"><img src="/static/image/s_5.jpg" class="im1"></a>
-                        <div class="yc">
-                            <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                            <div class="ttext">
-                                <h4 style="font-family: 微软雅黑">视频标题</h4>
-                                <p style="font-family: 微软雅黑">文字说明文字说明</p>
-                            </div>
-                            <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                        </div>
-                        <div class="ttext3">
-                            <h4 style="font-family:微软雅黑">视频的标题</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section5">
-                        <a href="#"><img src="/static/image/s_9.png" class="im1"></a>
-                        <div class="yc">
-                            <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                            <div class="ttext">
-                                <h4 style="font-family: 微软雅黑">视频标题</h4>
-                                <p style="font-family: 微软雅黑">文字说明文字说明</p>
-                            </div>
-                            <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                        </div>
-                        <div class="ttext3">
-                            <h4 style="font-family:微软雅黑">视频的标题</h4>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+            
             </div>
-        </div>
-        <div>&nbsp</div>
-        <div class="row mrow mrow1">
-            <div class="col-md-3 col-xs-6 section6">
-                <img src="/static/image/s_6.jpg" class="im8">
-                <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                    <div class="ttext">
-                        <h4 style="font-family: 微软雅黑">视频标题</h4>
-                        <p style="font-family: 微软雅黑">文字说明文字说明</p>
+            <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+            <div class="col-md-12 kg" style="padding:0;">
+                
+                {% for time in range(5, 10) %}
+                    <div class="col-md-3 col-xs-6 section6 kg1">
+                    <img src="{{ lifes[time].image_url }}" class="im11">
+                    <div class="yc">
+                        <a href="{{ lifes[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
+                        <div class="ttext">
+                            <h4 style="font-family: 微软雅黑">{{ lifes[time].title }}</h4>
+                            <p style="font-family: 微软雅黑">{{ lifes[time].introduction }}</p>
+                        </div>
+                        <a href="{{ lifes[time].play_page_url }}"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
                     </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                </div>
-                <div class="ttext3">
-                    <h4 style="font-family:微软雅黑">视频的标题</h4>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 section7">
-                <img src="image/s_4.jpg" class="im8">
-                <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                    <div class="ttext">
-                        <h4 style="font-family: 微软雅黑">视频标题</h4>
-                        <p style="font-family: 微软雅黑">文字说明文字说明</p>
                     </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                </div>
-                <div class="ttext3">
-                    <h4 style="font-family:微软雅黑">视频的标题</h4>
-                </div>
-            </div>
-            <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
+                {% endfor %}
 
-            <div class="col-md-3 col-xs-6 section8">
-                <img src="/static/image/s_8.jpg" class="im8">
-                <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                    <div class="ttext">
-                        <h4 style="font-family: 微软雅黑">视频标题</h4>
-                        <p style="font-family: 微软雅黑">文字说明文字说明</p>
-                    </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                </div>
-                <div class="ttext3">
-                    <h4 style="font-family:微软雅黑">视频的标题</h4>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 section9">
-                <img src="/static/image/s_2.jpg" class="im8">
-                <div class="yc">
-                    <a href="#"><div  class="rsp"><div class="rsp1"></div></div></a>
-                    <div class="ttext">
-                        <h4 style="font-family: 微软雅黑">视频标题</h4>
-                        <p style="font-family: 微软雅黑">文字说明文字说明</p>
-                    </div>
-                    <a href="#"><button type="button" class="btn-success btn-xs text">立即播放</button></a>
-                </div>
-                <div class="ttext3">
-                    <h4 style="font-family:微软雅黑">视频的标题</h4>
-                </div>
             </div>
         </div>
 
+        <div class="row imt">
+            <div class="col-md-3 col-sm-6 col-xs-6 ad">
+                <a href="#"><h3 style="font-family:幼圆">科技</h3></a>
+            </div>
+            <div class="col-md-9 col-sm-6 col-xs-6 ad">
+                <h4 style="font-family: 幼圆"># 改变世界，改变自己 #</h4>
+            </div>
+        </div>
+        <div class="row mrow" style="font-family: 微软雅黑">
+            <div class="col-md-3 col-xs-12" style="padding:0">
+
+                {% for time in range(0, 2) %}
+                    <div class="col-md-12">
+                    <a href="{{ technologys[time].play_page_url }}" class="imh">
+                        <img src="{{ technologys[time].image_url }}" class="im1">
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <a href="{{ technologys[2].play_page_url }}"><img src="{{ technologys[2].image_url }}" class="im1"></a>
+            </div>
+            <div class="col-md-3 col-xs-12" style="padding:0">
+
+                {% for time in range(3, 5) %}
+                    <div class="col-md-12">
+                    <a href="{{ technologys[time].play_page_url }}" class="imh">
+                        <img src="{{ technologys[time].image_url }}" class="im1">
+                    </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
         <div class="row imt">
             <div class="col-md-3 col-sm-6 col-xs-6 ad">
                 <a href="#"><h3 style="font-family:幼圆">动漫</h3></a>
@@ -415,34 +245,20 @@
         </div>
         <div class="row mrow" style="font-family: 微软雅黑">
             <div class="col-md-6 col-sm-12 htitle">
-                <a href="#"><img src="/static/image/d_3.jpg" class="im6"></a>
-                <a href="#" class="txt">
-                    <h3 class="txt1 bt" style="font-family: 幼圆">&ltFate/zero&gt</h3>
+                <a href="{{ animations[0].play_page_url }}"><img src="{{ animations[0].image_url }}" class="im im1"></a>
+                <a href="{{ animations[0].play_page_url }}" class="txt">
+                    <h3 class="txt1 bt" style="font-family: 幼圆">&lt{{ animations[0].title }}&gt</h3>
                 </a>
             </div>
-            <div class="clearfix visible-xs-block">&nbsp</div>
-            <div class="col-md-6 col-sm-12">
-                <div class="row htitle" style="font-family: 微软雅黑">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <a href="#"><img src="/static/image/d_4.jpeg" class="im2" title="<时尚>春季新推荐"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt我们未曾知道到那些花的名字&gt</h5></a>
+            <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+            <div class="col-md-6 col-sm-12" style="padding:0">
+
+                    {% for time in range(1, 5) %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+                        <a href="{{ animations[time].play_page_url }}"><img src="{{ animations[time].image_url }}" class="im1" title="<时尚>春季新推荐"></a>
+                        <a href="{{ animations[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ animations[time].title }}&gt</h5></a>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <a href="#"><img src="/static/image/d_2.jpg" class="im2" title="<时尚>春季新推荐"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt火影忍者&gt</h5></a>
-                    </div>
-                </div>
-                <div>&nbsp</div>
-                <div class="row htitle">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <a href="#"><img src="/static/image/d_5.jpg" class="im2" title="<时尚>春季新推荐"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt再见萤火虫&gt</h5></a>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <a href="#"><img src="/static/image/d_1.jpeg" class="im2" title="<时尚>春季新推荐"></a>
-                        <a href="#" class="txt"><h5 class="txt1 bt1">&lt神幻拍档&gt</h5></a>
-                    </div>
-                </div>
+                    {% endfor %}
             </div>
         </div>
         <div class="row imt">
@@ -465,97 +281,96 @@
         <div class="product-wrap mrow mrow1">
             <div class="row product shows" style="font-family: 微软雅黑">
                 <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_5.jpg" class="im10"></a>
+                    <a href="#"><img src="image/m_5.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">古音今曲</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="/static/image/m_6.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_6.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">芊芊"戏"语</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="/static/image/m_7.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_7.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">长安忆</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="/static/image/m_8.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_8.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">提灯照山河</h5></a>
                 </div>
             </div>
-            <div class="row product" style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="/static/image/m_1.jpg" class="im10"></a>
+            <div class="row product mrow mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_1.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">上课了，少女们</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="/static/image/m_2.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_2.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">&lt插曲&gt清新男女对唱</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="/static/image/m_3.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_3.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">深夜居酒屋</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_4.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_4.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">校园の恋爱</h5></a>
                 </div>
             </div>
-            <div class="row  product " style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_9.jpg" class="im10"></a>
+            <div class="row  product mrow mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_9.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">打开暖气和音乐</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_10.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_10.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">小提琴之美</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_11.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_11.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">每天一本书</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_12.jpeg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_12.jpeg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">搭配工作的音乐</h5></a>
                 </div>
             </div>
-            <div class="row product " style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_17.jpg" class="im10"></a>
+            <div class="row product mrow mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_17.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">一首关于樱花的歌</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_18.png" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_18.png" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">中二病之歌</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_19.jpeg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_19.jpeg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">二次元的清新之作</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_20.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_20.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">&ltbgm&gt点燃你的激情</h5></a>
                 </div>
             </div>
 
-            <div class="row product " style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_13.jpg" class="im10"></a>
+            <div class="row product mrow mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_13.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">国语流行才是最厉害的</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_14.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_14.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">欧美流行乐</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_15.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_15.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">那些年我们一起追过的歌</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_16.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 td kg1">
+                    <a href="#"><img src="image/m_16.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt2">韩国流行乐</h5></a>
                 </div>
             </div>
@@ -587,7 +402,7 @@
                     <p>大自然对人类的报复</p>
                 </div>
             </div>
-            <div class="clearfix visible-xs-block">&nbsp</div>
+            <div class="clearfix visible-xs-block visible-sm-block kg"></div>
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="加勒比海盗" src="image/y_3.jpeg" class="im11"></a>
                 <div class="sp">
@@ -606,7 +421,7 @@
                     <p>没一件衣服都想要</p>
                 </div>
             </div>
-            <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
+            <div class="clearfix visible-xs-block visible-sm-block kg"></div>
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="魔鬼诗社" src="image/y_2.jpg" class="im11"></a>
                 <div class="sp">
@@ -645,97 +460,96 @@
         </div>
         <div class="product-wrap mrow1">
             <div class="row product shows" style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_1.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_1.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt亮剑&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_2.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_2.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt杉杉来了&gt</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_3.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_3.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt仙剑奇侠传&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_4.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_4.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt北京青年&gt</h5></a>
                 </div>
             </div>
-            <div class="row product" style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_5.jpg" class="im10"></a>
+            <div class="row product mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_5.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt龙樱&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_6.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg11">
+                    <a href="#" class="imgwrap"><img src="image/v_6.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt求婚大作战&gt</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_7.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_7.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt无间双龙&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_8.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_8.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt花样男子&gt</h5></a>
                 </div>
             </div>
-            <div class="row  product " style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_9.jpg" class="im10"></a>
+            <div class="row  product mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_9.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt逍遥法外&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_10.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_10.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt汉娜.蒙塔纳&gt</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_11.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_11.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt生活大爆炸&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_12.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_12.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt吸血鬼日记&gt</h5></a>
                 </div>
             </div>
-            <div class="row product " style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_13.jpg" class="im10"></a>
+            <div class="row product mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_13.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt唐顿庄园&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_14.jpeg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_14.jpeg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt神探夏洛克&gt</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_15.jpg" class="im10"></a>
+                <div class="clearfix visible-xs-block visible-sm-block kg"></div>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_15.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt小镇疑云&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_16.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_16.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt英伦魔法师&gt</h5></a>
                 </div>
             </div>
-            <div class="row product " style="font-family: 微软雅黑">
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_17.jpg" class="im10"></a>
+            <div class="row product mrow1" style="font-family: 微软雅黑">
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_17.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt法证先锋&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_18.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_18.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt使徒行者&gt</h5></a>
                 </div>
-                <div class="clearfix visible-xs-block visible-sm-block">&nbsp</div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_19.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_19.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt潜行狙击&gt</h5></a>
                 </div>
-                <div class="col-md-3 col-xs-6 htitle">
-                    <a href="#" class="imgwrap"><img src="image/v_20.jpg" class="im10"></a>
+                <div class="col-md-3 col-xs-6 htitle kg1">
+                    <a href="#" class="imgwrap"><img src="image/v_20.jpg" class="im11"></a>
                     <a href="#" class="txt"><h5 class="txt1 bt1">&lt公主嫁到&gt</h5></a>
                 </div>
             </div>

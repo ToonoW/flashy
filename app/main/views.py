@@ -35,16 +35,16 @@ def server_shutdown():
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    recommands = Post.query.order_by(Post.play_times.desc()).limit(5).all()
-    gdmus = Post.query.filter(Post.category == 'gdmu').order_by(Post.timestamp.desc()).limit(4).all()
-    lifes = Post.query.filter(Post.category == 'life').order_by(Post.timestamp.desc()).limit(4).all()
+    recommands = Post.query.order_by(Post.play_times.desc()).limit(9).all()
+    gdmus = Post.query.filter(Post.category == 'gdmu').order_by(Post.timestamp.desc()).limit(8).all()
+    lifes = Post.query.filter(Post.category == 'life').order_by(Post.timestamp.desc()).limit(9).all()
     technologys = Post.query.filter(Post.category == 'technology').order_by(Post.timestamp.desc()).limit(4).all()
     movies = Post.query.filter(Post.category == 'movie').order_by(Post.timestamp.desc()).limit(4).all()
     musics = Post.query.filter(Post.category == 'music').order_by(Post.timestamp.desc()).limit(4).all()
-    animations = Post.query.filter(Post.category == 'animation').order_by(Post.timestamp.desc()).limit(4).all()
+    animations = Post.query.filter(Post.category == 'animation').order_by(Post.timestamp.desc()).limit(5).all()
     tvs = Post.query.filter(Post.category == 'tv').order_by(Post.timestamp.desc()).limit(4).all()
 
-    return render_template('index.html', recommands=recommands)
+    return render_template('index.html', recommands=recommands, gdmus=gdmus, lifes=lifes, technologys=technologys, movies= movies, musics=musics, animations=animations, tvs=tvs)
 
 
 @main.route('/user/<username>')
