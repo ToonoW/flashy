@@ -91,8 +91,8 @@
             <div class="col-md-6 col-sm-12" style="font-family: 微软雅黑; padding:0;">
                     {% for time in range(1, 5) %}
                         <div class="col-md-6  col-sm-6 col-xs-6">
-                            <a href="{{ recommands[time].play_page_url() }}"><img src="{{ recommands[time].image_url }}" class="im1 img-responsive" title="<{{ recommands[time].category }}>{{ recommands[time].title }}"></a>
-                            <a href="{{ recommands[time].play_page_url() }}" class="txt"><h5 class="txt1 bt1">&lt{{ recommands[time].category }}&gt{{ recommands[time].title }}</h5></a>
+                            <a href="{% recommands[time].play_page_url() %}"><img src="{{ recommands[time].image_url }}" class="im1 img-responsive" title="<{{ recommands[time].category }}>{{ recommands[time].title }}"></a>
+                            <a href="{% recommands[time].play_page_url() %}" class="txt"><h5 class="txt1 bt1">&lt{{ recommands[time].category }}&gt{{ recommands[time].title }}</h5></a>
                         </div>
                     {% endfor %}
 
