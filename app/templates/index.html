@@ -29,7 +29,7 @@
                         <span class="icon-bar" style="background-color:#fff"></span>
                     </button>
                     <a href="#" class="navbar-brand iml1"  >
-                        <img class="iml" alt="Brand" src="image/logo.png">
+                        <img class="img-responsive iml" alt="Brand" src="/static/image/logo.png">
                     </a>
                     <a href="#" class="navbar-brand title1"  style="font-family: 幼圆" >
                         <div>爱视</div>
@@ -95,7 +95,7 @@
                             <a href="{{ recommands[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ recommands[time].category }}&gt{{ recommands[time].title }}</h5></a>
                         </div>
                     {% endfor %}
-                    
+
             </div>
         </div>
         <div class="row  imt">
@@ -110,7 +110,7 @@
 
             {% for time in range(5, 9) %}
                 <div class="col-md-3 col-sm-6 col-xs-6 section kg1" >
-                <a href="{{ recommands[time].play_page_url }}"><img src="{{ recommands[time].image_url }}" class="im5"></a>
+                <a href="{{ recommands[time].play_page_url }}"><img src="{{ recommands[time].image_url }}" class="img-responsive im5"></a>
                 <div class="yc">
                     <a href="{{ recommands[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                     <div class="ttext">
@@ -137,7 +137,7 @@
 
             {% for time in range(0, 8) %}
                 <div class="col-md-3 col-xs-6 td1">
-                <a href="{{ gdmus[time].play_page_url }}"><img src="{{ gdmus[time].image_url }}" class="im10"></a>
+                <a href="{{ gdmus[time].play_page_url }}"><img src="{{ gdmus[time].image_url }}" class="im10 img-responsive"></a>
                 <h5 >{{ gdmus[time].title }}</h5>
             </div>
             {% endfor %}
@@ -153,7 +153,7 @@
         </div>
         <div class="row mrow">
             <div class="col-md-6 col-sm-12 section1">
-                <a href="{{ lifes[0].play_page_url }}"><img src="{{ lifes[0].image_url }}" class="im1"></a>
+                <a href="{{ lifes[0].play_page_url }}"><img src="{{ lifes[0].image_url }}" class="im1 img-responsive"></a>
                 <div class="yc">
                     <a href="{{ lifes[0].play_page_url }}"><div class="rrsp"><div class="rrsp1"></div></div></a>
                     <div class="ttext1">
@@ -167,7 +167,7 @@
 
                     {% for time in range(1, 5) %}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 section2">
-                        <a href="{{ lifes[time].play_page_url }}"><img src="{{ lifes[time].image_url }}" class="im1"></a>
+                        <a href="{{ lifes[time].play_page_url }}"><img src="{{ lifes[time].image_url }}" class="im1 img-responsive"></a>
                         <div class="yc">
                             <a href="{{ lifes[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                             <div class="ttext">
@@ -178,14 +178,14 @@
                         </div>
                         </div>
                     {% endfor %}
-            
+
             </div>
             <div class="clearfix visible-xs-block visible-sm-block kg"></div>
             <div class="col-md-12 kg" style="padding:0;">
-                
+
                 {% for time in range(5, 9) %}
                     <div class="col-md-3 col-xs-6 section6 kg1">
-                    <img src="{{ lifes[time].image_url }}" class="im11">
+                    <img src="{{ lifes[time].image_url }}" class="im11 img-responsive">
                     <div class="yc">
                         <a href="{{ lifes[time].play_page_url }}"><div  class="rsp"><div class="rsp1"></div></div></a>
                         <div class="ttext">
@@ -214,21 +214,21 @@
                 {% for time in range(0, 2) %}
                     <div class="col-md-12">
                     <a href="{{ technologys[time].play_page_url }}" class="imh">
-                        <img src="{{ technologys[time].image_url }}" class="im1">
+                        <img src="{{ technologys[time].image_url }}" class="im1 img-responsive">
                     </a>
                 </div>
                 {% endfor %}
 
             </div>
             <div class="col-md-6 col-xs-12">
-                <a href="{{ technologys[2].play_page_url }}"><img src="{{ technologys[2].image_url }}" class="im1"></a>
+                <a href="{{ technologys[2].play_page_url }}"><img src="{{ technologys[2].image_url }}" class="im1 img-responsive"></a>
             </div>
             <div class="col-md-3 col-xs-12" style="padding:0">
 
                 {% for time in range(3, 5) %}
                     <div class="col-md-12">
                     <a href="{{ technologys[time].play_page_url }}" class="imh">
-                        <img src="{{ technologys[time].image_url }}" class="im1">
+                        <img src="{{ technologys[time].image_url }}" class="im1 img-responsive">
                     </a>
                     </div>
                 {% endfor %}
@@ -245,7 +245,7 @@
         </div>
         <div class="row mrow" style="font-family: 微软雅黑">
             <div class="col-md-6 col-sm-12 htitle">
-                <a href="{{ animations[0].play_page_url }}"><img src="{{ animations[0].image_url }}" class="im im1"></a>
+                <a href="{{ animations[0].play_page_url }}"><img src="{{ animations[0].image_url }}" class="im im1 img-responsive"></a>
                 <a href="{{ animations[0].play_page_url }}" class="txt">
                     <h3 class="txt1 bt" style="font-family: 幼圆">&lt{{ animations[0].title }}&gt</h3>
                 </a>
@@ -255,7 +255,7 @@
 
                     {% for time in range(1, 5) %}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
-                        <a href="{{ animations[time].play_page_url }}"><img src="{{ animations[time].image_url }}" class="im1" title="<时尚>春季新推荐"></a>
+                        <a href="{{ animations[time].play_page_url }}"><img src="{{ animations[time].image_url }}" class="im1 img-responsive" title="<时尚>春季新推荐"></a>
                         <a href="{{ animations[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ animations[time].title }}&gt</h5></a>
                     </div>
                     {% endfor %}
@@ -281,35 +281,35 @@
         <div class="product-wrap mrow mrow1">
             <div class="row product shows" style="font-family: 微软雅黑">
                 <div class="col-md-3 col-xs-6 td">
-                    <a href="#"><img src="image/m_5.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_5.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">古音今曲</h5></a>
                 </div>
                 <div class="col-md-3 col-xs-6 td kg1">
-                    <a href="#"><img src="image/m_6.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_6.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">芊芊"戏"语</h5></a>
                 </div>
                 <div class="clearfix visible-xs-block visible-sm-block kg"></div>
                 <div class="col-md-3 col-xs-6 td kg1">
-                    <a href="#"><img src="image/m_7.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_7.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">长安忆</h5></a>
                 </div>
                 <div class="col-md-3 col-xs-6 td kg1">
-                    <a href="#"><img src="image/m_8.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_8.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">提灯照山河</h5></a>
                 </div>
             </div>
             <div class="row product mrow mrow1" style="font-family: 微软雅黑">
                 <div class="col-md-3 col-xs-6 td kg1">
-                    <a href="#"><img src="image/m_1.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_1.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">上课了，少女们</h5></a>
                 </div>
                 <div class="col-md-3 col-xs-6 td kg1">
-                    <a href="#"><img src="image/m_2.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_2.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">&lt插曲&gt清新男女对唱</h5></a>
                 </div>
                 <div class="clearfix visible-xs-block visible-sm-block kg"></div>
                 <div class="col-md-3 col-xs-6 td kg1">
-                    <a href="#"><img src="image/m_3.jpg" class="im11"></a>
+                    <a href="#"><img src="image/m_3.jpg" class="im11 img-responsive"></a>
                     <a href="#" class="txt"><h5 class="txt2">深夜居酒屋</h5></a>
                 </div>
                 <div class="col-md-3 col-xs-6 td kg1">
@@ -387,7 +387,7 @@
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="眼镜蛇特种部队" src="image/y_1.jpg" class="im11"></a>
                 <div class="sp">
-                    <img class="is" src="image/span1.png">
+                    <img class="img-responsive is" src="image/span1.png">
                     <p class="is1">欧美</p>
                     <h5>眼镜蛇部队</h5>
                     <p>一支最强的特种部队</p>
@@ -396,7 +396,7 @@
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="后天" src="image/y_5.jpg" class="im11"></a>
                 <div class="sp">
-                    <img class="is" src="image/span1.png">
+                    <img class="img-responsive is" src="image/span1.png">
                     <p class="is1">欧美</p>
                     <h5>后天</h5>
                     <p>大自然对人类的报复</p>
@@ -406,7 +406,7 @@
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="加勒比海盗" src="image/y_3.jpeg" class="im11"></a>
                 <div class="sp">
-                    <img class="is" src="image/span1.png">
+                    <img class="img-responsive is" src="image/span1.png">
                     <p class="is1">欧美</p>
                     <h5>加勒比海盗</h5>
                     <p>帅气船长扬帆起航</p>
@@ -415,7 +415,7 @@
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="穿普拉达的女魔头" src="image/y_4.jpg" class="im11"></a>
                 <div class="sp">
-                    <img class="is" src="image/span1.png">
+                    <img class="img-responsive is" src="image/span1.png">
                     <p class="is1">欧美</p>
                     <h5>穿布拉达的女魔头</h5>
                     <p>没一件衣服都想要</p>
@@ -425,7 +425,7 @@
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="魔鬼诗社" src="image/y_2.jpg" class="im11"></a>
                 <div class="sp">
-                    <img class="is" src="image/span1.png">
+                    <img class="img-responsive is" src="image/span1.png">
                     <p class="is1">欧美</p>
                     <h5>魔鬼诗社</h5>
                     <p>今后的生命喜悦如诗</p>
@@ -434,7 +434,7 @@
             <div class="col-md-2 col-sm-2 col-xs-6 sp1">
                 <a href="#"><img title="起风了" src="image/y_6.jpg" class="im11"></a>
                 <div class="sp">
-                    <img class="is" src="image/span1.png">
+                    <img class="img-responsive is" src="image/span1.png">
                     <p class="is1">日本</p>
                     <h5>起风了</h5>
                     <p>昔风不起，唯有努力生存</p>
@@ -583,9 +583,9 @@
                     <a class="ca3" href="#" style="font-family: 幼圆;">GDMU摄影协会官方微博</a>
                 </div>
                 <div class="row imtitle">
-                    <a href="#"><img class="imm" src="image/44.png"></a>
-                    <a href="#" class="ca2"><img class="imm" src="image/33.png"></a>
-                    <a href="#" class="ca2"><img class="imm" src="image/66.png"></a>
+                    <a href="#"><img class="img-responsive imm" src="image/44.png"></a>
+                    <a href="#" class="ca2"><img class="img-responsive imm" src="image/33.png"></a>
+                    <a href="#" class="ca2"><img class="img-responsive imm" src="image/66.png"></a>
                 </div>
             </div>
         </div>
