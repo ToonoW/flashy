@@ -348,7 +348,7 @@ class Post(db.Model):
             'video_url_mp4': self.video_url_mp4,
             'category': self.category,
             'comment_count': self.comments.count(),
-            'play_page_url': '/video/play/' + self.id
+            'play_page_url': '/video/play/' + (str)(self.id)
         }
         return json_post
 
