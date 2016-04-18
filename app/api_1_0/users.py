@@ -141,3 +141,21 @@ def avatar_upload(id):
         'status': 0,
         'msg': 'fail to upload avatar'
     })
+
+
+@api.route('/user/<int:id>/birthday/<int:birthday>')
+def set_birthday(id, birthday):
+    user = User.query.filter(User.id == id).first()
+    if user is not None and birthday>0:
+        user.birthday = birthday;
+        db.session.commit()
+
+        return jsonify({
+            'status': 1,
+            'msg': 'set birthday success'
+        })
+
+    return jsonify({
+        'status': 0,
+        'msg': 'please check your data'
+    })

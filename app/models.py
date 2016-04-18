@@ -65,6 +65,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
+    birthday = db.Column(db.Integer, default=0)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=True)
@@ -256,7 +257,8 @@ class User(UserMixin, db.Model):
             #'posts': url_for('api.get_user_posts', id=self.id, _external=True),
             #'followed_posts': url_for('api.get_user_followed_posts',
             #                          id=self.id, _external=True),
-            'post_count': self.posts.count()
+            'post_count': self.posts.count(),
+            'birthday': self.birthday
         }
         return json_user
 
