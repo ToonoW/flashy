@@ -75,7 +75,11 @@ def get_homepage_posts():
 
 @api.route('/posts/<int:id>')
 def get_post(id):
-    post = Post.query.get_or_404(id)
+    post = Post.query.filter(Post.id == id).first()
+    if post is not None:
+        post.play_times+=1
+        db.session.commit()
+
     return jsonify({
         'author': post.author_id,
         'category': post.category,
