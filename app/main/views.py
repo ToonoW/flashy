@@ -39,7 +39,7 @@ def index():
     gdmus = Post.query.filter(Post.category == 'gdmu').order_by(Post.timestamp.desc()).limit(8).all()
     lifes = Post.query.filter(Post.category == 'life').order_by(Post.timestamp.desc()).limit(9).all()
     technologys = Post.query.filter(Post.category == 'technology').order_by(Post.timestamp.desc()).limit(5).all()
-    movies = Post.query.filter(Post.category == 'movie').order_by(Post.timestamp.desc()).limit(4).all()
+    movies = Post.query.filter(Post.category == 'movie').order_by(Post.timestamp.desc()).limit(6).all()
     musics = Post.query.filter(Post.category == 'music').order_by(Post.timestamp.desc()).limit(4).all()
     animations = Post.query.filter(Post.category == 'animation').order_by(Post.timestamp.desc()).limit(5).all()
     tvs = Post.query.filter(Post.category == 'tv').order_by(Post.timestamp.desc()).limit(4).all()

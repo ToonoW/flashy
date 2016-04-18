@@ -143,7 +143,7 @@ def avatar_upload(id):
     })
 
 
-@api.route('/user/<int:id>/birthday/<int:birthday>')
+@api.route('/user/<int:id>/setbirthday/<int:birthday>')
 def set_birthday(id, birthday):
     user = User.query.filter(User.id == id).first()
     if user is not None and birthday>0:
