@@ -270,8 +270,7 @@
                 <h4 style="font-family: 幼圆"># 聆听世话 #</h4>
             </div>
         </div>
-        <div class="product-wrap mrow mrow1">
-            <div class="row product shows" style="font-family: 微软雅黑">
+            <div class="row mrow mrow1" style="font-family: 微软雅黑">
 
                 {% for time in range(0, 4) %}
                     <div class="col-md-3 col-xs-6 td">
@@ -282,8 +281,6 @@
 
             </div>
 
-
-        </div>
         <div class="row imt">
             <div class="col-md-3 col-sm-6 col-xs-6 ad">
                 <a href="#"><h3 style="font-family:幼圆">电影</h3></a>
@@ -296,7 +293,7 @@
 
             {% for time in range(0, 6) %}
                 <div class="col-md-2 col-sm-2 col-xs-6 sp1">
-                <a href="{{ movies[time].play_page_url }}"><img title="{{ movies[time].title }}" src="{{ movies[time].cover_image_url }}" class="im11"></a>
+                <a href="{{ movies[time].play_page_url }}"><img title="{{ movies[time].title }}" src="{{ movies[time].cover_image_url }}" class="im11 img-responsive"></a>
                 <div class="sp">
                     <img class="img-responsive is" src="/static/image/span1.png">
                     <p class="is1">欧美</p>
@@ -320,7 +317,7 @@
 
                 {% for time in range(0, 4) %}
                     <div class="col-md-3 col-xs-6 htitle kg1">
-                    <a href="{{ tvs[time].play_page_url }}" class="imgwrap"><img src="{{ tvs[time].image_url }}" class="im11"></a>
+                    <a href="{{ tvs[time].play_page_url }}" class="imgwrap"><img src="{{ tvs[time].image_url }}" class="im11 img-responsive"></a>
                     <a href="{{ tvs[time].play_page_url }}" class="txt"><h5 class="txt1 bt1">&lt{{ tvs[time].title }}&gt</h5></a>
                     </div>
                 {% endfor %}
@@ -330,7 +327,6 @@
         </div>
     </div>
 </div>
-
 
 
 <footer class="container-fluid panel-footer ffoot">
