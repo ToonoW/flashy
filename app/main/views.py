@@ -329,6 +329,10 @@ def video_upload():
 
         filename = 'picture' + get_extname(form.image.data.filename)
         form.image.data.save(os.path.join(dirpath, filename))
+        from PIL import Image
+        im = Image.open(os.path.join(dirpath, filename))
+        out = im.resize((253, 147))
+        out.save(os.path.join(dirpath, filename))
         post.image_url = '/static/video/' + dirname + '/' + filename
 
         filename = 'cover_image' + get_extname(form.cover_image.data.filename)
