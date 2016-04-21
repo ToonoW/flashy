@@ -82,8 +82,8 @@
     <div class="container content">
         <div class="row htitle mrow">
             <div class="col-md-6 col-xs-12 col-sm-12 htitle1 "style="font-family: 微软雅黑">
-                <a href="#"><img src="{{ recommands[0].image_url }}" class="im1 img-responsive" title="<{{ recommands[0].category }}>{{ recommands[0].title }}"></a>
-                <a href="#" class="txt">
+                <a href="{{ recommands[0].play_page_url() }}"><img src="{{ recommands[0].image_url }}" class="im1 img-responsive" title="<{{ recommands[0].category }}>{{ recommands[0].title }}"></a>
+                <a href="{{ recommands[0].play_page_url() }}" class="txt">
                     <h3 class="txt1 bt" >&lt{{ recommands[0].category }}&gt{{ recommands[0].title }}</h3>
                 </a>
             </div>
