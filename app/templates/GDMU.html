@@ -33,7 +33,7 @@
                 <div class="he_slideAllDown">
                     <img class="he_slideAllDown_img" src="{{ gdmus[0].image_url }}"  alt="Image 01">
                     <div class="he_slideAllDown_caption">
-                        <h3 class="he_slideAllDown_caption_h" style="font-size: 3.5em;font-weight: 100">「{{ gdmu[0].title }}」</h3>
+                        <h3 class="he_slideAllDown_caption_h" style="font-size: 3.5em;font-weight: 100">「{{ gdmus[0].title }}」</h3>
                         <p class="he_slideAllDown_caption_p" style="">点击播放</p>
                         <a class="he_slideAllDown_caption_a" href="{{ gdmus[0].play_page_url() }}"></a>
                     </div>
@@ -108,7 +108,7 @@
 
                     </div>
                     <div class="col-xs-6"  >
-                    
+
                          {% for time in range(0, 9) %}
                         <a href="{{ gdmus[time].play_page_url() }}">    <h6 class="c " > {{ gdmus[time].title }}</h6></a></div>
                         <h6 class="usc2 d"> ---------------------------------------------</h6>
