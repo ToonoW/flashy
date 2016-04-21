@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+
+{% block title %}爱视_爱自生活，爱视分享{% endblock %}
+
+{% block head %}
+    {{ super() }}
+
+    <link href="/static/css/CET61.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    {% block page_nav %}{{ super() }}{% endblock %}
+
+    <div class="container-fluid"><div class="container">
+    <img src="/static/image1/15.png"  style="height: 160px" class=" gd">
+</div>
+</div>
+
+    {% block page_content %}
+
+
+    <div class="container-fluid">
+    <div class="container content">
+<div class="row" style="margin-top:1%">
+        <div class="col-md-8 col-xs-12"  >
+            <div class="us1" style="margin-bottom:5%;">
+                <div class="he_slideAllDown">
+                    <img class="he_slideAllDown_img" src="{{ gdmus[0].image_url }}"  alt="Image 01">
+                    <div class="he_slideAllDown_caption">
+                        <h3 class="he_slideAllDown_caption_h" style="font-size: 3.5em;font-weight: 100">「{{ gdmu[0].title }}」</h3>
+                        <p class="he_slideAllDown_caption_p" style="">点击播放</p>
+                        <a class="he_slideAllDown_caption_a" href="{{ gdmus[0].play_page_url() }}"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <div class="col-md-4">
+        {% for time in range(1, 3) %}
+
+            <div class="us1" style="margin-bottom:6%;">
+        <div class="he_3DFlipY">
+
+            <div class="he_3DFlipY_inner">
+                <div class="he_3DFlipY_img">
+                    <img src="{{ gdmus[time].image_url }}" alt="img01">
+                </div>
+                <div class="he_3DFlipY_caption">
+                    <h3 style="font-size: 1.5em;font-weight: 100">「{{ gdmus[time].title }}」</h3>
+                    <h5 style="margin-top:40%;">点击播放</h5>
+                </div>
+                <a href="{{ gdmus[time].play_page_url() }}"></a>
+            </div>
+        </div>
+            </div>
+        {% endfor %}
+    </div></div>
+        </div>
+        </div>
+
+
+
+        <div class="container-fluid">
+    <div class="container content">
+        <div class="row ">
+            <div class="col-md-6 col-xs-12"  >
+                <div class="he_slideAllDown " style="margin-bottom: 2%">
+                    <img class="he_slideAllDown_img" src="{{ gdmus[3].image_url }}"   alt="Image 01">
+                    <div class="he_slideAllDown_caption">
+                        <h3 class="he_slideAllDown_caption_h" style="font-size: 1.8em;font-weight: 100">「{{ gdmus[3].title }}」</h3>
+                        <p class="he_slideAllDown_caption_p" style="">点击播放</p>
+                        <a class="he_slideAllDown_caption_a" href="{{ gdmus[3].play_page_url() }}"></a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-xs-12 " style="padding: 0" >
+                {% for time in range(4, 6) %}
+                <div class=" col-md-6 col-xs-6 ">
+                    <div class="container-fluid usc" >
+                        <div class="he_ZoomInImg ">
+                            <img class="he_ZoomInImg_img" src="{{ gdmus[time].image_url }}" alt="Image 01">
+                            <div class="he_ZoomInImg_caption">
+                                <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:15%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:25%;background-color: #FFA8B8;">点击播放</p>
+                                <a class="he_ZoomInImg_caption_a" href="{{ gdmus[time].play_page_url() }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                    <div class="col-xs-6"  >
+                        <div class="usc1 d" style="font-family: 微软雅黑; border-right: 1px solid rgba(56, 209, 135, 0.44);">
+                            {% for time in range(0, 9) %}
+                        <a href="{{ gdmus[time].play_page_url() }}">    <h6 class="c " > {{ gdmus[time].title }}</h6></a></div>
+                        <h6 class="usc1 d"> ---------------------------------------------</h6>
+                        {% endfor %}
+
+
+                    </div>
+                    <div class="col-xs-6"  >
+                    
+                         {% for time in range(0, 9) %}
+                        <a href="{{ gdmus[time].play_page_url() }}">    <h6 class="c " > {{ gdmus[time].title }}</h6></a></div>
+                        <h6 class="usc2 d"> ---------------------------------------------</h6>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+
+    {% block footer %}{{ super() }}{% endblock %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="container content">
+    <div class="row" style="margin-top: 1%;">
+    <div class="col-md-6 col-xs-12" style="margin-bottom: 3%" >
+        <div class="us1">
+            <div class= "he_slideAllDown " style="margin-left:0.8%;">
+                <img class=" he_slideAllDown_img  " src="image1/7.png" alt="Image 01">
+                <div class="he_slideAllDown_caption">
+                    <h3 class="he_slideAllDown_caption_h" style="font-size: 1.8em;font-weight: 100">「 人人都爱“嘉年华”，盛况空前」</h3>
+                    <p class="he_slideAllDown_caption_p" style="">点击播放</p>
+
+                    <a class="he_slideAllDown_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-3 col-xs-6 "  >
+        <div class=" us1" >
+            <div class="he_ZoomInImg ">
+                <img class="he_ZoomInImg_img" src="image1/8.png" alt="Image 01">
+                <div class="he_ZoomInImg_caption">
+                    <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:-10%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:30%;background-color: #FFA8B8;">点击播放</p>
+                    <a class="he_ZoomInImg_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+        <div class="us1" >
+            <div class="he_ZoomInImg "  style="margin-top:5.8%">
+                <img class="he_ZoomInImg_img" src="image1/9.png" alt="Image 01" >
+                <div class="he_ZoomInImg_caption">
+                    <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:40%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:30%;background-color: #FFA8B8;">点击播放</p>
+                    <a class="he_ZoomInImg_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+</div>
+    <div class="col-md-3 col-xs-6 "   >
+        <div class="us1" >
+            <div class="he_ZoomInImg ">
+                <img class="he_ZoomInImg_img" src="image1/10.png" alt="Image 01">
+                <div class="he_ZoomInImg_caption">
+                    <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:-10%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:20%;background-color: #FFA8B8;">点击播放</p>
+                    <a class="he_ZoomInImg_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class=" us1" >
+            <div class="he_ZoomInImg "style="margin-top:5.8%">
+                <img class="he_ZoomInImg_img" src="image1/11.png" alt="Image 01" >
+                <div class="he_ZoomInImg_caption">
+                    <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:40%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:20%;background-color: #FFA8B8;">点击播放</p>
+                    <a class="he_ZoomInImg_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="container">
+    <img src="image1/17.png"  class="gd" style="margin-top:5%;height: 150px;">
+</div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="container content">
+<div class="row" style="margin-top: 1%">
+
+        <div class="col-md-6 col-xs-12 "  style="margin-bottom:3%;" >
+            <div class="us1" >
+                <div class="he_ZoomInImg ">
+                    <img class="he_ZoomInImg_img" src="image1/01.jpg" alt="Image 01">
+                    <div class="he_ZoomInImg_caption">
+                        <p class="he_ZoomInImg_caption_p" style="font-size: 1.5em;margin-top:0%;border-radius: 20px;width: 30%;margin-left:22%;background-color: #FFA8B8;">点击播放</p>
+                        <a class="he_ZoomInImg_caption_a" href="#"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+            <div class="col-md-3 "   >
+                <a href="#" style=" text-decoration: none;">
+                    <div class="use2">
+            <h3 class=" use3">2016年华南医院信息网络大会</h3>
+            <h6 class="usf3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3月25至3月27日, 2016年华南医院信息网络大会于在广东肇庆市举行。我校信息工程学院副院长尚文刚教授，信息工程学教研室冯天亮教授，夏峰老师、白金山老师以及学生代表参加了大会。来自广东、广西、海南、湖南等省区300多家医院、院校和厂家的1000多位代表参加了会议。
+                　<br><br><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(文、图/郑林源)</h6>
+        </div> </a>
+    </div>
+
+    <div class="col-md-3 col-xs-12 " style="padding-left: 0;" >
+        <div class="us1" >
+            <div class="he_ZoomInImg ">
+                <img class="he_ZoomInImg_img" src="image1/12.png" alt="Image 01">
+                <div class="he_ZoomInImg_caption">
+                    <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:-15%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:20%;background-color: #FFA8B8;">点击播放</p>
+                    <a class="he_ZoomInImg_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+        <div class="us1" >
+            <div class="he_ZoomInImg " style="margin-top:7.8%" >
+                <img class="he_ZoomInImg_img" src="image1/16.png" alt="Image 01">
+                <div class="he_ZoomInImg_caption">
+                    <p class="he_ZoomInImg_caption_p" style="height:25px;line-height:25px;margin-top:45%;font-size: 0.8em;border-radius: 10px;width:30%;margin-left:20%;background-color: #FFA8B8;">点击播放</p>
+                    <a class="he_ZoomInImg_caption_a" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="container content">
+<div class="row  ">
+
+    <div class="col-md-3 col-xs-6" style="margin-bottom: 3%" >
+        <div class="he_3DFlipY">
+            <div class="he_3DFlipY_inner">
+                <div class="he_3DFlipY_img">
+                    <img src="image1/22.png"  class="container-fluid f1" alt="img01">
+                </div>
+                <div class="he_3DFlipY_caption">
+                    <h3>校花“祭”</h3>
+                    <p>垂面欲吻薇，“含芳独暮春”</p>
+                    <h5>立即播放</h5>
+                </div>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 col-xs-6" style="margin-bottom: 3%" >
+        <div class="he_3DFlipY1">
+            <div class="he_3DFlipY_inner">
+                <div class="he_3DFlipY_img">
+                    <img src="image1/19.png"  class="container-fluid f1" alt="img01">
+                </div>
+                <div class="he_3DFlipY_caption">
+                    <h3>校花“祭”</h3>
+                    <p>花开向阳，独树一帜</p>
+                    <h5>立即播放</h5>
+                </div>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-xs-6"  >
+        <div class="he_3DFlipY2">
+            <div class="he_3DFlipY_inner">
+                <div class="he_3DFlipY_img">
+                    <img src="image1/21.png"  class="container-fluid f1" alt="img01">
+                </div>
+                <div class="he_3DFlipY_caption">
+                    <h3>校花“祭”</h3>
+                    <p>面如施黛，骨立寒霜</p>
+                    <h5>立即播放</h5>
+                </div>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-xs-6"  >
+        <div class="he_3DFlipY3">
+            <div class="he_3DFlipY_inner">
+                <div class="he_3DFlipY_img">
+                    <img src="image1/18.png"  class="container-fluid f1" alt="img01">
+                </div>
+                <div class="he_3DFlipY_caption">
+                    <h3>校花“祭”</h3>
+                    <p>"点破银花玉雪香"</p>
+                    <h5>立即播放</h5>
+                </div>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

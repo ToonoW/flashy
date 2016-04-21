@@ -32,7 +32,7 @@ def server_shutdown():
     shutdown()
     return 'Shutting down...'
 
-
+# 主页
 @main.route('/', methods=['GET', 'POST'])
 def index():
     recommands = Post.query.order_by(Post.play_times.desc()).limit(9).all()
@@ -46,6 +46,13 @@ def index():
 
     return render_template('index.html', recommands=recommands, gdmus=gdmus, lifes=lifes, technologys=technologys, movies= movies, musics=musics, animations=animations, tvs=tvs)
 
+
+# GDMU
+@main.route('/gdmu')
+def gdmu_category():
+    gdmus = Post.query.filter(Post.category == 'gdmu').order_by(Post.timestamp.desc()).limit(9).all()
+
+    return render_template('GDMU.html', gdmus=gdmus)
 
 @main.route('/user/<username>')
 def user(username):
