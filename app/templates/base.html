@@ -3,7 +3,6 @@
 {% block title %}爱视_爱自生活，爱视分享{% endblock %}
 
 {% block head %}
-{{ super() }}
     <meta charset="UTF-8">
     <meta name="toTop" content="true">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
@@ -61,6 +60,7 @@
 
 
                     <form class="navbar-form navbar-right" role="search">
+                        {{ form.csrf_token }}
                         <div class="form-group">
                             <input type="text" class="form-control has-success search1" placeholder="search">
                         </div>
