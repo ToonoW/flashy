@@ -15,6 +15,9 @@
 {% endblock %}
 
 {% block navbar %}
+<div class="container-fluid iii">
+    <img src="/static/image/3.png" class="ii">
+</div>
 
 <nav class="container-fluid navbar navbar-fixed-top"  style="background-color:rgba(56,209,135,.55)">
             <div class="container">
@@ -82,9 +85,21 @@
 
     {% block page_content %}{% endblock %}
 </div>
+
+    {% block footer %}
+        <footer class="container-fluid modal-footer ffoot">
+    <div class="container flinks">
+        <a href="#" style="font-family: 幼圆;">关于我们</a>
+        <a href="#" style="font-family: 幼圆;">联系我们</a>
+        <a  href="#" style="font-family: 幼圆;">友情链接:GDMU摄影协会官方微博</a>
+    </div>
+    <div class="container ff">
+        Copyright&copy;LWLXL
+    </div>
+</footer>
+    {% endblock %}
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
-{{ moment.include_moment() }}
+
 {% endblock %}
