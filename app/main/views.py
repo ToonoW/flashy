@@ -338,7 +338,7 @@ def video_upload():
         form.image.data.save(os.path.join(dirpath, filename))
         from PIL import Image
         im = Image.open(os.path.join(dirpath, filename))
-        out = im.resize((907, 637))
+        out = im.resize((263, 147))
         out.save(os.path.join(dirpath, filename))
         post.image_url = '/static/video/' + dirname + '/' + filename
 
