@@ -5,6 +5,8 @@ from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.pagedown import PageDown
+from flask_whooshalchemyplus import whoosh_index
+
 from config import config
 
 bootstrap = Bootstrap()
@@ -17,6 +19,7 @@ login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
+from app.models import Post
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -29,6 +32,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     pagedown.init_app(app)
+    whoosh_index(app, Post)
 
     if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
         from flask.ext.sslify import SSLify
