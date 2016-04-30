@@ -174,3 +174,27 @@ def tran2md5(src):
 def get_extname(filename):
     (name, ext) = os.path.splitext(filename)
     return ext
+
+
+# 搜索标题
+@api.route('/posts/search', methods=['POST'])
+def video_search():
+    body = request.json
+    category = body.get('category', 'all')
+    keyword = body.get('keyword', None)
+    if keyword is not None:
+        result_list = []
+        if category == 'all':
+            result_list = Post.query.whoosh_search(keyword).all()
+        else:
+            result_list = Post.query.filter(Post.category==category).whoosh_search(keyword).all()
+        return jsonify({
+            "msg": "search success",
+            "status": 1,
+            "resultes": [post.to_json() for post in result_list]
+        })
+    else:
+        return jsonify({
+            "msg": "search fail",
+            "status": 0
+        })

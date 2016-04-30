@@ -7,6 +7,9 @@ import bleach
 from flask import current_app, request, url_for
 from flask.ext.login import UserMixin, AnonymousUserMixin
 from app.exceptions import ValidationError
+from jieba.analyse import ChineseAnalyzer
+import flask_whooshalchemyplus
+
 from . import db, login_manager
 
 
@@ -238,6 +241,23 @@ class User(UserMixin, db.Model):
         return self.followers.filter_by(
             follower_id=user.id).first() is not None
 
+    # 关于点赞的处理逻辑
+    def favor(self, postID):
+        if not self.is_favoring(self, postID):
+            f = Favor(post_id=postID, user_id=self.id)
+            db.session.add(f)
+            db.session.commit()
+
+    def unfavor(self, postID):
+        f = Favor.filter(Favor.user_id == self.id and Favor.post_id == postID)
+        if f:
+            db.session.delete(f)
+            db.session.commit()
+
+    def is_favoring(self, postID):
+        return Favor.filter(Favor.post_id == postID and Favor.user_id == self.id).first() is not None
+
+
     @property
     def followed_posts(self):
         return Post.query.join(Follow, Follow.followed_id == Post.author_id)\
@@ -297,6 +317,9 @@ def load_user(user_id):
 
 class Post(db.Model):
     __tablename__ = 'posts'
+    __searchable__ = ['title']  # these fields will be indexed by whoosh
+    __analyzer__ = ChineseAnalyzer()
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
     body = db.Column(db.Text)

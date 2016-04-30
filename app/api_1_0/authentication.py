@@ -97,7 +97,7 @@ def login():
         if user.verify_password(password):
             login_user(user, remember=True)
             return jsonify({
-                'status': 0,
+                'stateus': 0,
                 'msg': '登陆成功',
                 'user': user.to_json()
             })
