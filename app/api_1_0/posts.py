@@ -177,7 +177,7 @@ def get_extname(filename):
 
 
 # 搜索标题
-@api.route('/posts/search', methods=['POST'])
+@api.route('/posts/search/', methods=['POST'])
 def video_search():
     body = request.json
     category = body.get('category', 'all')
