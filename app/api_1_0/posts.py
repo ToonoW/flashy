@@ -182,12 +182,14 @@ def video_search():
     body = request.json
     category = body.get('category', 'all')
     keyword = body.get('keyword', None)
+    # order可选选项time, play, favor 分别对应时间，播放数，收藏数
+    order = body.get('order', 'time')
     if keyword is not None:
         result_list = []
         if category == 'all':
             result_list = Post.query.whoosh_search(keyword).order_by(Post.timestamp.desc()).all()
         else:
-            result_list = Post.query.filter(Post.category==category).whoosh_search(keyword).order_by(Post.timestamp.desc()).all()
+            result_list = Post.query.filter(Post.category==category).whoosh_search(keyword).order_by(switch_search_order(order)).all()
         return jsonify({
             "msg": "search success",
             "status": 1,
@@ -198,3 +200,13 @@ def video_search():
             "msg": "search fail",
             "status": 0
         })
+
+
+# 返回排序设置
+def switch_search_order(order):
+    if order == "play":
+        return Post.play_times.desc()
+    if order == "favor":
+        return Post.favor_num.desc()
+
+    return Post.timestamp.desc()
