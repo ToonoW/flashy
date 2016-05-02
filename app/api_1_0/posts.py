@@ -80,17 +80,7 @@ def get_post(id):
         post.play_times+=1
         db.session.commit()
 
-    return jsonify({
-        'author': post.author_id,
-        'category': post.category,
-        'id': post.id,
-        'video_url': post.video_url,
-        'video_url_mp4': post.video_url_mp4,
-        'title': post.title,
-        'introduction': post.introduction,
-        'favor_num': post.favor_num,
-        'play_times': post.play_times
-    })
+    return jsonify(post.to_json())
 
 
 @api.route('/posts/', methods=['POST'])
