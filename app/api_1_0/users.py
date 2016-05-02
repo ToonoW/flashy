@@ -1,4 +1,5 @@
 from flask import jsonify, request, current_app, url_for
+from flask.ext.login import login_required, current_user
 from . import api
 from ..models import User, Post
 from .. import db
@@ -158,4 +159,57 @@ def set_birthday(id, birthday):
     return jsonify({
         'status': 0,
         'msg': 'please check your data'
+    })
+
+
+@api.route('/follow/<int:id>')
+@login_required
+def follow_user(id):
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        current_user.follow(user)
+        return jsonify({
+            "status": 1,
+            "msg": "follow success"
+        })
+
+    return jsonify({
+        "status": 0,
+        "msg": "follow fail, can't find user"
+    })
+
+
+@api.route('/unfollow/<int:id>')
+@login_required
+def unfollow_user(id):
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        current_user.unfollow(user)
+        return jsonify({
+            "status": 1,
+            "msg": "unfollow success"
+        })
+
+    return jsonify({
+        "status": 0,
+        "msg": "follow fail, can't find user"
+    })
+
+
+# 检查是否处于关注状态
+@api.route('/check_follow/<int:id>')
+@login_required
+def check_follow(id):
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        follow_status = current_user.is_following(user)
+        return jsonify({
+            "status": 1,
+            "msg": "check success",
+            "result": follow_status
+        })
+
+    return jsonify({
+        "status": 0,
+        "msg": "check fail, can't find user"
     })
