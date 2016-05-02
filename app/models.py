@@ -203,8 +203,10 @@ class User(UserMixin, db.Model):
         return True
 
     def can(self, permissions):
-        return self.role is not None and \
-            (self.role.permissions & permissions) == permissions
+        if self.role is not None and (self.role.permissions & permissions) == permissions:
+            print("permission access !")
+            return True
+        return False
 
     def is_administrator(self):
         return self.can(Permission.ADMINISTER)
@@ -373,7 +375,8 @@ class Post(db.Model):
             'video_url_mp4': self.video_url_mp4,
             'category': self.category,
             'comment_count': self.comments.count(),
-            'play_page_url': '/video/play/' + (str)(self.id)
+            'play_page_url': '/video/play/' + (str)(self.id),
+            'avatar_url': self.author.avatar_url
         }
         return json_post
 
