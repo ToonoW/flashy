@@ -187,7 +187,7 @@ def video_search():
     if keyword is not None:
         result_list = []
         if category == 'all':
-            result_list = Post.query.whoosh_search(keyword).order_by(Post.timestamp.desc()).all()
+            result_list = Post.query.whoosh_search(keyword).order_by(switch_search_order(order)).all()
         else:
             result_list = Post.query.filter(Post.category==category).whoosh_search(keyword).order_by(switch_search_order(order)).all()
         return jsonify({
