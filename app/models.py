@@ -257,6 +257,11 @@ class User(UserMixin, db.Model):
         return self.followers.filter_by(
             follower_id=user.id).first() is not None
 
+    @property
+    def followed_posts(self):
+        return Post.query.join(Follow, Follow.followed_id == Post.author_id)\
+            .filter(Follow.follower_id == self.id)
+
     # 关于点赞的处理逻辑
     def favor(self, postID):
         if not self.is_favoring(postID):
@@ -265,19 +270,13 @@ class User(UserMixin, db.Model):
             db.session.commit()
 
     def unfavor(self, postID):
-        f = Favor.filter(Favor.user_id == self.id and Favor.post_id == postID)
-        if f:
+        f = self.favorers.filter(Favor.user_id == self.id and Favor.post_id == postID).first()
+        if f is not None:
             db.session.delete(f)
             db.session.commit()
 
     def is_favoring(self, postID):
         return self.favorers.filter(Favor.post_id == postID and Favor.user_id == self.id).first() is not None
-
-
-    @property
-    def followed_posts(self):
-        return Post.query.join(Follow, Follow.followed_id == Post.author_id)\
-            .filter(Follow.follower_id == self.id)
 
     def to_json(self):
         json_user = {

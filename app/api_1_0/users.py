@@ -1,5 +1,5 @@
 from flask import jsonify, request, current_app, url_for
-from flask.ext.login import login_required, current_user
+from flask.ext.login import current_user
 from .decorators import permission_required
 from . import api
 from ..models import User, Post, Permission
@@ -165,7 +165,6 @@ def set_birthday(id, birthday):
 
 
 @api.route('/follow/<int:id>/<token>/')
-@login_required
 def follow_user(id, token):
     if not verify_password(token):
         return jsonify({
@@ -187,7 +186,6 @@ def follow_user(id, token):
 
 
 @api.route('/unfollow/<int:id>/<token>/')
-@login_required
 def unfollow_user(id, token):
     if not verify_password(token):
         return jsonify({

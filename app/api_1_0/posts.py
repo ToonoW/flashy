@@ -1,8 +1,10 @@
 from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
-from ..models import Post, Permission
+from flask.ext.login import login_required, current_user
+from ..models import Post, Permission, User
 from . import api
 from .decorators import permission_required
+from .authentication import verify_password
 from .errors import forbidden
 import os, time, hashlib
 
@@ -211,3 +213,92 @@ def switch_search_order(order):
         return Post.favor_num.desc()
 
     return Post.timestamp.desc()
+
+
+# 收藏视频
+@api.route('/post/favor/<int:id>/<token>')
+def favor_video(id, token):
+    if not verify_password(token):
+        return jsonify({
+            'status': 0,
+            'msg': "please login"
+        })
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        current_user.favor(current_user)
+        return jsonify({
+            "status": 1,
+            "msg": "favor success"
+        })
+    return jsonify({
+        "status": 0,
+        "msg": "favor fail, can't find user"
+    })
+
+
+# 取消收藏
+@api.route('/post/favor/<int:id>/<token>')
+def unfavor_video(id, token):
+    if not verify_password(token):
+        return jsonify({
+            'status': 0,
+            'msg': "please login"
+        })
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        current_user.unfavor(current_user)
+        return jsonify({
+            "status": 1,
+            "msg": "unfavor success"
+        })
+    return jsonify({
+        "status": 0,
+        "msg": "favor fail, can't find user"
+    })
+
+
+# 检查是否处于收藏状态
+@api.route('/check_favor/<int:id>/<token>/')
+def check_follow(id, token):
+    if not verify_password(token):
+        return jsonify({
+            'status': 0,
+            'msg': "please login"
+        })
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        favor_status = current_user.is_favoring(user)
+        return jsonify({
+            "status": 1,
+            "msg": "check success",
+            "result": favor_status
+        })
+
+    return jsonify({
+        "status": 0,
+        "msg": "check fail, can't find user"
+    })
+
+
+# 分页获取收藏列表
+@api.route('/followers/<int:id>')
+def followers(id):
+    user = User.query.filter_by(id=id).first()
+    if user is None:
+        return jsonify({
+            'status': 0,
+            'msg': "can't find user"
+        })
+    user = User.query.filter(User.id == id).first()
+    if user is not None:
+        favorers = user.favorers.all()
+        return jsonify({
+            "status": 1,
+            "msg": "check success",
+            "posts_id": [favor.post_id for favor in favorers]
+        })
+
+    return jsonify({
+        "status": 0,
+        "msg": "check fail, can't find user"
+    })
