@@ -216,7 +216,7 @@ def switch_search_order(order):
 
 
 # 收藏视频
-@api.route('/post/favor/<int:id>/<token>')
+@api.route('/post/favor/<int:id>/<token>/')
 def favor_video(id, token):
     if not verify_password(token):
         return jsonify({
@@ -237,7 +237,7 @@ def favor_video(id, token):
 
 
 # 取消收藏
-@api.route('/post/favor/<int:id>/<token>')
+@api.route('/post/favor/<int:id>/<token>/')
 def unfavor_video(id, token):
     if not verify_password(token):
         return jsonify({
@@ -280,8 +280,8 @@ def check_favor(id, token):
     })
 
 
-# 分页获取收藏列表
-@api.route('/favorers/<int:id>')
+# 获取收藏列表
+@api.route('/favorers/<int:id>/')
 def favorers(id):
     user = User.query.filter_by(id=id).first()
     if user is None:
