@@ -1,7 +1,7 @@
 from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from flask.ext.login import login_required, current_user
-from ..models import Post, Permission, User
+from ..models import Post, Permission, User, Favor
 from . import api
 from .decorators import permission_required
 from .authentication import verify_password
@@ -259,7 +259,7 @@ def unfavor_video(id, token):
 
 # 检查是否处于收藏状态
 @api.route('/check_favor/<int:id>/<token>/')
-def check_follow(id, token):
+def check_favor(id, token):
     if not verify_password(token):
         return jsonify({
             'status': 0,
@@ -281,8 +281,8 @@ def check_follow(id, token):
 
 
 # 分页获取收藏列表
-@api.route('/followers/<int:id>')
-def followers(id):
+@api.route('/favorers/<int:id>')
+def favorers(id):
     user = User.query.filter_by(id=id).first()
     if user is None:
         return jsonify({
@@ -291,7 +291,7 @@ def followers(id):
         })
     user = User.query.filter(User.id == id).first()
     if user is not None:
-        favorers = user.favorers.all()
+        favorers = user.favorers.order_by(Favor.timestamp.desc()).all()
         return jsonify({
             "status": 1,
             "msg": "check success",
