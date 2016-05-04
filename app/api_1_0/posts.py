@@ -295,7 +295,7 @@ def favorers(id):
         return jsonify({
             "status": 1,
             "msg": "check success",
-            "posts_id": [favor.post_id for favor in favorers]
+            "posts": [Post.query.filter(Post.id == favor.post_id).first().to_json() for favor in favorers]
         })
 
     return jsonify({
