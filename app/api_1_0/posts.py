@@ -28,6 +28,17 @@ def get_posts():
     })
 
 
+@api.route('/posts/hot/')
+def get_hot_video():
+    """最热视频"""
+    posts = Post.query.order_by(Post.play_times.desc()).limit(20).all()
+    return jsonify({
+        'status': 1,
+        'msg': 'pull success',
+        'posts': [post.to_json() for post in posts]
+    })
+
+
 @api.route('/posts/query/<category>/<int:page>')
 def get_posts_by_query(category, page=1):
     """选择按照播放次数或者收藏数排序，并且有分类挑选"""

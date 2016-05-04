@@ -63,6 +63,15 @@ class Follow(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 
+class Favor(db.Model):
+    __tablename__ = 'favors'
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'),
+                            primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
+                            primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -93,6 +102,11 @@ class User(UserMixin, db.Model):
                                 lazy='dynamic',
                                 cascade='all, delete-orphan')
     comments = db.relationship('Comment', backref='author', lazy='dynamic')
+    favorers = db.relationship('Favor',
+                               foreign_keys=[Favor.user_id],
+                               backref=db.backref('user', lazy='joined'),
+                               lazy='dynamic',
+                               cascade='all, delete-orphan')
 
     @staticmethod
     def generate_fake(count=100):
@@ -245,7 +259,7 @@ class User(UserMixin, db.Model):
 
     # 关于点赞的处理逻辑
     def favor(self, postID):
-        if not self.is_favoring(self, postID):
+        if not self.is_favoring(postID):
             f = Favor(post_id=postID, user_id=self.id)
             db.session.add(f)
             db.session.commit()
@@ -257,7 +271,7 @@ class User(UserMixin, db.Model):
             db.session.commit()
 
     def is_favoring(self, postID):
-        return Favor.filter(Favor.post_id == postID and Favor.user_id == self.id).first() is not None
+        return self.favorers.filter(Favor.post_id == postID and Favor.user_id == self.id).first() is not None
 
 
     @property
@@ -338,6 +352,11 @@ class Post(db.Model):
     introduction = db.Column(db.Text, default='UP主很懒，还没有视频简介')
     category = db.Column(db.String(64))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    favored = db.relationship('Favor',
+                              foreign_keys=[Favor.post_id],
+                              backref=db.backref('post', lazy='joined'),
+                              lazy='dynamic',
+                              cascade='all, delete-orphan')
 
     @staticmethod
     def generate_fake(count=100):
@@ -365,6 +384,7 @@ class Post(db.Model):
             'title': self.title,
             'timestamp': self.timestamp,
             'author': self.author_id,
+            'author_name': User.query.filter(User.id == self.author_id).first().username,
             'coin_num': self.coin_num,
             'favor_num': self.favor_num,
             'play_times': self.play_times,
@@ -386,15 +406,6 @@ class Post(db.Model):
         if body is None or body == '':
             raise ValidationError('post does not have a body')
         return Post(body=body)
-
-
-class Favor(db.Model):
-    __tablename__ = 'favors'
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'),
-                            primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
-                            primary_key=True)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 class Comment(db.Model):
