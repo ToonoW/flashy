@@ -12,7 +12,8 @@ auth = HTTPBasicAuth()
 
 
 @auth.verify_password
-def verify_password(email_or_token, password):
+def verify_password(email_or_token, password=''):
+    print(email_or_token)
     if email_or_token == '':
         g.current_user = AnonymousUser()
         return True
@@ -96,9 +97,11 @@ def login():
     if user is not None:
         if user.verify_password(password):
             login_user(user, remember=True)
+            g.current_user = user
             return jsonify({
                 'status': 0,
                 'msg': '登陆成功',
+                'token': g.current_user.generate_auth_token(expiration=3600),
                 'user': user.to_json()
             })
         else:

@@ -1,8 +1,10 @@
 from flask import jsonify, request, current_app, url_for
 from flask.ext.login import login_required, current_user
+from .decorators import permission_required
 from . import api
-from ..models import User, Post
+from ..models import User, Post, Permission
 from .. import db
+from .authentication import verify_password
 
 
 @api.route('/users/<int:id>')
@@ -162,9 +164,14 @@ def set_birthday(id, birthday):
     })
 
 
-@api.route('/follow/<int:id>')
+@api.route('/follow/<int:id>/<token>/')
 @login_required
-def follow_user(id):
+def follow_user(id, token):
+    if not verify_password(token):
+        return jsonify({
+            'status': 0,
+            'msg': "please login"
+        })
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.follow(user)
@@ -179,9 +186,14 @@ def follow_user(id):
     })
 
 
-@api.route('/unfollow/<int:id>')
+@api.route('/unfollow/<int:id>/<token>/')
 @login_required
-def unfollow_user(id):
+def unfollow_user(id, token):
+    if not verify_password(token):
+        return jsonify({
+            'status': 0,
+            'msg': "please login"
+        })
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.unfollow(user)
@@ -197,9 +209,13 @@ def unfollow_user(id):
 
 
 # 检查是否处于关注状态
-@api.route('/check_follow/<int:id>')
-@login_required
-def check_follow(id):
+@api.route('/check_follow/<int:id>/<token>/')
+def check_follow(id, token):
+    if not verify_password(token):
+        return jsonify({
+            'status': 0,
+            'msg': "please login"
+        })
     user = User.query.filter(User.id == id).first()
     if user is not None:
         follow_status = current_user.is_following(user)
@@ -212,4 +228,26 @@ def check_follow(id):
     return jsonify({
         "status": 0,
         "msg": "check fail, can't find user"
+    })
+
+
+# 分页获取关注人列表
+@api.route('/followers/<int:id>')
+def followers(id):
+    user = User.query.filter_by(id=id).first()
+    if user is None:
+        return jsonify({
+            'status': 0,
+            'msg': "can't find user"
+        })
+    page = request.args.get('page', 1, type=int)
+    pagination = user.followers.paginate(
+        page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
+        error_out=False)
+    follows = [{'id': item.id, 'username': item.username, 'avatar_url': item.avatar_url, 'about_me': item.about_me}
+               for item in pagination.items]
+    return jsonify({
+        'status': 1,
+        'msg': 'pull followers list success',
+        'results': follows
     })
