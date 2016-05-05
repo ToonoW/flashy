@@ -289,6 +289,7 @@ def favorers(id):
         for favor in favorers:
             p = Post.query.filter(Post.id == favor.post_id).first()
             posts.append(p)
+            print(p.title)
         return jsonify({
             "status": 1,
             "msg": "pull success",
