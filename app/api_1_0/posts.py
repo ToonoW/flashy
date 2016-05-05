@@ -285,7 +285,10 @@ def favorers(id):
         #favorers = user.favorers.order_by(Favor.timestamp.desc()).all()
         #posts = [Post.query.filter(Post.id == favor.post_id).first() for favor in favorers]
         favorers = Favor.query.filter(Favor.user_id == user.id).all()
-        posts = [Post.query.filter(Post.id == favor.post_id).first() for favor in favorers]
+        posts = []
+        for favor in favorers:
+            p = Post.query.filter(Post.id == favor.post_id).first()
+            posts.append(p)
         return jsonify({
             "status": 1,
             "msg": "pull success",
