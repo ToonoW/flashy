@@ -286,6 +286,11 @@ def favorers(id):
         #posts = [Post.query.filter(Post.id == favor.post_id).first() for favor in favorers]
         favorers = Favor.query.filter(Favor.user_id == user.id).all()
         posts = []
+        if favorers is None:
+            print("favorers is None")
+            return jsonify({
+                'status': 0
+            })
         for favor in favorers:
             p = Post.query.filter(Post.id == favor.post_id).first()
             posts.append(p)
