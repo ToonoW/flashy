@@ -298,7 +298,7 @@ def favorers(id):
         return jsonify({
             "status": 1,
             "msg": "pull success",
-            "posts": posts is not None and [post.to_json() for post in posts] or []
+            "posts": posts and [post is not None and post.to_json() or 'none' for post in posts] or []
         })
 
     return jsonify({
