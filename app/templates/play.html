@@ -71,8 +71,8 @@
                 </ul>
             </div>
             <div class="col-md-2 col-sm-12 discuss">
-                <img src="image/discuss1.png" class="col-md-6 imf1">
-                <h4>433</h4>
+                <img src="/static/image/discuss1.png" class="col-md-6 imf1">
+                <h4>0</h4>
             </div>
         </div>
     </div>
@@ -87,16 +87,11 @@
                 <div class="col-md-3 col-sm-6 col-xs-6">
                     <a href="#"><img src="image/m_1.jpg" class="imj"></a>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <a href="#"><img src="image/m_6.jpg" class="imj"></a>
-                </div>
-                <div class="clearfix visible-sm-block visible-xs-block">&nbsp</div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <a href="#"><img src="image/m_13.jpg" class="imj"></a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <a href="#"><img src="image/m_11.jpg" class="imj"></a>
-                </div>
+                {% for time in range(0, 4) %}
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                         <a href="{{ others[time].play_page_url() }}"><img src="{{ others[time].image_url }}" class="imj"></a>
+                    </div>
+                {% endblock %}
             </div>
             <div class="row pbxs1">
                 <div class="col-md-12">

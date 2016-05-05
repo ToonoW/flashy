@@ -157,8 +157,10 @@ def play_video(id):
         page, per_page=current_app.config['FLASKY_COMMENTS_PER_PAGE'],
         error_out=False)
     comments = pagination.items
+
+    others = Post.query.filter(Post.category == post.category).order_by(Post.timestamp.desc()).limit(4).all()
     return render_template('play.html', video=post, form=form,
-                           comments=comments, pagination=pagination)
+                           comments=comments, pagination=pagination, others=others)
 
 
 @main.route('/edit/<int:id>', methods=['GET', 'POST'])
