@@ -1,5 +1,5 @@
 from flask import jsonify, request, current_app, url_for
-from flask.ext.login import current_user
+from flask.ext.login import current_user, login_required
 from .decorators import permission_required
 from . import api
 from ..models import User, Post, Permission
@@ -164,13 +164,9 @@ def set_birthday(id, birthday):
     })
 
 
-@api.route('/follow/<int:id>/<token>/')
-def follow_user(id, token):
-    if not verify_password(token):
-        return jsonify({
-            'status': 0,
-            'msg': "please login"
-        })
+@api.route('/follow/<int:id>/')
+@login_required
+def follow_user(id):
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.follow(user)

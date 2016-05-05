@@ -1,6 +1,7 @@
 from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from flask.ext.login import login_required, current_user
+from pickle import dump
 from ..models import Post, Permission, User, Favor
 from . import api
 from .decorators import permission_required
@@ -8,7 +9,9 @@ from .authentication import verify_password
 from .errors import forbidden
 import os, time, hashlib
 
+
 @api.route('/posts/')
+@login_required
 def get_posts():
     """推荐的接口"""
     page = request.args.get('page', 1, type=int)
@@ -295,11 +298,11 @@ def favorers(id):
         posts = [Post.query.filter(Post.id == favor.post_id).first() for favor in favorers]
         return jsonify({
             "status": 1,
-            "msg": "check success",
-            "posts": [post.to_json() for post in posts]
+            "msg": "pull success",
+            "posts": posts and [post.to_json() for post in posts] or []
         })
 
     return jsonify({
         "status": 0,
-        "msg": "check fail, can't find user"
+        "msg": "pull fail, can't find user"
     })
