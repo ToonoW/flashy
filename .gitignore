@@ -87,6 +87,8 @@ ENV/
 # Video and Picture
 app/static/video/
 app/static/topic_image/
+app/static/avatar/
 migrations
 .idea
 *.sqlite
+search.db
