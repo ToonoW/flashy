@@ -167,7 +167,6 @@ def set_birthday(id, birthday):
 @api.route('/follow/<int:id>/')
 @login_required
 def follow_user(id):
-
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.follow(user)
