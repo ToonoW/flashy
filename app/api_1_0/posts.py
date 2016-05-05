@@ -219,13 +219,9 @@ def switch_search_order(order):
 
 
 # 收藏视频
-@api.route('/post/favor/<int:id>/<token>/')
-def favor_video(id, token):
-    if not verify_password(token):
-        return jsonify({
-            'status': 0,
-            'msg': "please login"
-        })
+@api.route('/post/favor/<int:id>/<int:id2>/')
+def favor_video(id, id2):
+    current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.favor(current_user)
@@ -240,13 +236,9 @@ def favor_video(id, token):
 
 
 # 取消收藏
-@api.route('/post/favor/<int:id>/<token>/')
-def unfavor_video(id, token):
-    if not verify_password(token):
-        return jsonify({
-            'status': 0,
-            'msg': "please login"
-        })
+@api.route('/post/favor/<int:id>/<int:id2>/')
+def unfavor_video(id, id2):
+    current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.unfavor(current_user)
@@ -261,13 +253,9 @@ def unfavor_video(id, token):
 
 
 # 检查是否处于收藏状态
-@api.route('/check_favor/<int:id>/<token>/')
-def check_favor(id, token):
-    if not verify_password(token):
-        return jsonify({
-            'status': 0,
-            'msg': "please login"
-        })
+@api.route('/check_favor/<int:id>/<int:id2>/')
+def check_favor(id, id2):
+    current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
     if user is not None:
         favor_status = current_user.is_favoring(user)
