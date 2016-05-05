@@ -14,13 +14,15 @@ auth = HTTPBasicAuth()
 @auth.verify_password
 def verify_password(email_or_token, password=''):
     print(email_or_token)
-    if email_or_token == '':
-        g.current_user = AnonymousUser()
-        return True
     if password == '':
+        print("pass password")
         g.current_user = User.verify_auth_token(email_or_token)
         g.token_used = True
         return g.current_user is not None
+    if email_or_token == '':
+        print("pass email")
+        g.current_user = AnonymousUser()
+        return True
     user = User.query.filter_by(email=email_or_token).first()
     if not user:
         return False
@@ -34,12 +36,13 @@ def auth_error():
     return unauthorized('Invalid credentials')
 
 
-@api.before_request
-@auth.login_required
+#@api.before_request
+#@auth.login_required
 def before_request():
-    if not g.current_user.is_anonymous and \
-            not g.current_user.confirmed:
-        return forbidden('Unconfirmed account')
+#    if not g.current_user.is_anonymous and \
+#            not g.current_user.confirmed:
+#        return forbidden('Unconfirmed account')
+    pass
 
 
 @api.route('/token')
