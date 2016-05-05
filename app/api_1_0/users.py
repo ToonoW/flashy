@@ -166,7 +166,7 @@ def set_birthday(id, birthday):
 
 @api.route('/follow/<int:id>/<int:id2>')
 def follow_user(id, id2):
-    current_user = User.query.filter(User.id == id2)
+    current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.follow(user)
@@ -181,13 +181,9 @@ def follow_user(id, id2):
     })
 
 
-@api.route('/unfollow/<int:id>/<token>/')
-def unfollow_user(id, token):
-    if not verify_password(token):
-        return jsonify({
-            'status': 0,
-            'msg': "please login"
-        })
+@api.route('/unfollow/<int:id>/<int:id2>')
+def unfollow_user(id, id2):
+    current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
     if user is not None:
         current_user.unfollow(user)
@@ -203,13 +199,9 @@ def unfollow_user(id, token):
 
 
 # 检查是否处于关注状态
-@api.route('/check_follow/<int:id>/<token>/')
-def check_follow(id, token):
-    if not verify_password(token):
-        return jsonify({
-            'status': 0,
-            'msg': "please login"
-        })
+@api.route('/check_follow/<int:id>/<int:id2>')
+def check_follow(id, id2):
+    current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
     if user is not None:
         follow_status = current_user.is_following(user)
