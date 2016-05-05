@@ -21,12 +21,12 @@
         <div class="row vd">
             <div class="col-md-9 col-sm-12 col-xs-12 vde">
                 <video controls="controls" >
-                    <source  src="video/try.mp4"/>
+                    <source  src="{{ video.video_url_mp4 }}"/>
                 </video>
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12 gr">
                     <div class="col-md-12 grs">
-                        <h3 class="col-md-8" style="font-family: 微软雅黑">up主名字</h3>
+                        <h3 class="col-md-8" style="font-family: 微软雅黑">{{ video.author_name() }}</h3>
                         <button type="button" class="col-md-3 btn btn-sm btn-success vbtn">关注</button>
                     </div>
                         <div class="panel col-md-12 grxx">

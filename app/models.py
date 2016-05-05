@@ -376,6 +376,9 @@ class Post(db.Model):
     def play_page_url(self):
         return '/video/play/' + (str)(self.id)
 
+    def author_name(self):
+        return User.query.filter(User.id == self.author_id).first().username
+
     def to_json(self):
         json_post = {
             'id': self.id,
