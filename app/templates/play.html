@@ -84,9 +84,6 @@
         </div>
         <div class="panel-body pbx">
             <div class="row pbxs">
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <a href="#"><img src="image/m_1.jpg" class="imj"></a>
-                </div>
                 {% for time in range(0, 4) %}
                     <div class="col-md-3 col-sm-6 col-xs-6">
                          <a href="{{ others[time].play_page_url() }}"><img src="{{ others[time].image_url }}" class="imj"></a>
