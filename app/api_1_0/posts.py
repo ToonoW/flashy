@@ -9,7 +9,9 @@ from .authentication import verify_password
 from .errors import forbidden
 import os, time, hashlib
 
+
 @api.route('/posts/')
+@login_required
 def get_posts():
     """推荐的接口"""
     page = request.args.get('page', 1, type=int)
