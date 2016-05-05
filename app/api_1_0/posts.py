@@ -282,7 +282,9 @@ def favorers(id):
         })
     user = User.query.filter(User.id == id).first()
     if user is not None:
-        favorers = user.favorers.order_by(Favor.timestamp.desc()).all()
+        #favorers = user.favorers.order_by(Favor.timestamp.desc()).all()
+        #posts = [Post.query.filter(Post.id == favor.post_id).first() for favor in favorers]
+        favorers = Favor.query.filter(Favor.user_id == user.id).all()
         posts = [Post.query.filter(Post.id == favor.post_id).first() for favor in favorers]
         return jsonify({
             "status": 1,

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}爱视_爱自生活，爱视分享{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/search.css">
+{% endblock %}
+
+
+{% block page_content %}
+
+<div class="container-fluid cu">
+        <ul  class="container ccu">
+            <li class="row">
+                <div class="col-md-3">
+                    <img src="/static/image/y_13.jpg" class="img-responsive">
+                </div>
+                <div class="col-md-8">
+                    <h3>搜索内容的标题</h3>
+                    <div class="col-md-2 cu1">
+                        <p>类型:电影</p>
+                    </div>
+                    <div class="col-md-2 cu1">
+                        <p>地区:美国</p>
+                    </div>
+                    <div class="col-md-2 cu1">
+                        <p>时间:2010</p>
+                    </div>
+                    <div class="col-md-6 cu1">
+                        <p>主演:张xx, 李某某，王aa</p>
+                    </div>
+                    <div class="col-md-12 cu1">
+                        <p style="color:#585858">内容简介:从前有座山，山上有座庙，庙里有个老和尚给小和尚说,
+                            从前有座山，山上有座庙，庙里有个老和尚给小和尚说。
+                        </p>
+                    </div>
+                    <div class="col-md-4 cu1" style="margin-top:60px">
+                        <button type="button" class="btn btn-default btn1">立即观看</button>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+</div>
+
+
+{% endblock %}
