@@ -236,7 +236,7 @@ def favor_video(id, id2):
 
 
 # 取消收藏
-@api.route('/post/favor/<int:id>/<int:id2>/')
+@api.route('/post/unfavor/<int:id>/<int:id2>/')
 def unfavor_video(id, id2):
     current_user = User.query.filter(User.id == id2).first()
     user = User.query.filter(User.id == id).first()
