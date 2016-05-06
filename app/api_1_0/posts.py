@@ -293,12 +293,16 @@ def favorers(id):
             })
         for favor in favorers:
             p = Post.query.filter(Post.id == favor.post_id).first()
-            posts.append(p)
-            print(p.title)
+            try:
+                p.to_json()
+                posts.append(p)
+            except:
+                pass
+
         return jsonify({
             "status": 1,
             "msg": "pull success",
-            "posts": posts and [post is not None and post.to_json() or 'none' for post in posts] or []
+            "posts": [post.to_json() for post in posts]
         })
 
     return jsonify({
