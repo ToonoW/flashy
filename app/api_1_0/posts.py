@@ -222,9 +222,9 @@ def switch_search_order(order):
 @api.route('/post/favor/<int:id>/<int:id2>/')
 def favor_video(id, id2):
     current_user = User.query.filter(User.id == id2).first()
-    user = User.query.filter(User.id == id).first()
-    if user is not None:
-        current_user.favor(current_user)
+    video = Post.query.filter(Post.id == id).first()
+    if video is not None:
+        current_user.favor(video)
         return jsonify({
             "status": 1,
             "msg": "favor success"
@@ -239,9 +239,9 @@ def favor_video(id, id2):
 @api.route('/post/unfavor/<int:id>/<int:id2>/')
 def unfavor_video(id, id2):
     current_user = User.query.filter(User.id == id2).first()
-    user = User.query.filter(User.id == id).first()
-    if user is not None:
-        current_user.unfavor(current_user)
+    video = Post.query.filter(Post.id == id).first()
+    if video is not None:
+        current_user.unfavor(video)
         return jsonify({
             "status": 1,
             "msg": "unfavor success"
@@ -256,9 +256,9 @@ def unfavor_video(id, id2):
 @api.route('/check_favor/<int:id>/<int:id2>/')
 def check_favor(id, id2):
     current_user = User.query.filter(User.id == id2).first()
-    user = User.query.filter(User.id == id).first()
-    if user is not None:
-        favor_status = current_user.is_favoring(user)
+    video = Post.query.filter(Post.id == id).first()
+    if video is not None:
+        favor_status = current_user.is_favoring(video)
         return jsonify({
             "status": 1,
             "msg": "check success",
