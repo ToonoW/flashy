@@ -278,7 +278,7 @@ class User(UserMixin, db.Model):
             db.session.commit()
 
     def is_favoring(self, postID):
-        return self.favorers.filter(Favor.post_id == postID and Favor.user_id == self.id).first() is not None
+        return self.favorers.filter(Favor.post_id == postID).first() is not None
 
     def to_json(self):
         json_user = {
