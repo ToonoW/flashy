@@ -226,14 +226,21 @@ def followers(id):
             'status': 0,
             'msg': "can't find user"
         })
-    page = request.args.get('page', 1, type=int)
-    pagination = user.followers.paginate(
-        page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
-        error_out=False)
-    follows = [{'id': item.id, 'username': item.username, 'avatar_url': item.avatar_url, 'about_me': item.about_me}
-               for item in pagination.items]
+    followeds =  user.followed.all()
+    follower = []
+    for f in followeds:
+        try:
+            info_dic = {'id': f.id,
+                        'username': f.username,
+                        'avatar_url': f.avatar_url,
+                        'about_me': f.about_me
+                        }
+            follower.append(info_dic)
+        except:
+            pass
+
     return jsonify({
         'status': 1,
         'msg': 'pull followers list success',
-        'results': follows
+        'results': follower
     })
