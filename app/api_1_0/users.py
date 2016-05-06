@@ -228,12 +228,14 @@ def followers(id):
         })
     followeds =  user.followed.all()
     follower = []
+
     for f in followeds:
         try:
-            info_dic = {'id': f.id,
-                        'username': f.username,
-                        'avatar_url': f.avatar_url,
-                        'about_me': f.about_me
+            u = User.query.filter(User.id == f.followed_id).first()
+            info_dic = {'id': u.id,
+                        'username': u.username,
+                        'avatar_url': u.avatar_url,
+                        'about_me': u.about_me
                         }
             follower.append(info_dic)
         except:
