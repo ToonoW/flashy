@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}爱视_爱自生活，爱视分享{% endblock %}
+
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    {% block page_nav %}{{ super() }}{% endblock %}
+
+    {% block page_content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% for tv in tvs %}
+                        <a href="{{ tv.play_page_url() }}"><img class="im1 img-responsive" src="{{ tv.image_url }}"></a>
+                        <a href="{{ tv.play_page_url() }}">{{ tv.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+    {% block footer %}{{ super() }}{% endblock %}
+
+{% endblock %}

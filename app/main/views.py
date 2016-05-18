@@ -54,6 +54,13 @@ def gdmu_category():
 
     return render_template('GDMU.html', gdmus=gdmus)
 
+# tv
+@main.route('/tv')
+def tv_category():
+    tvs = Post.query.filter(Post.category == 'tv').order_by(Post.timestamp.desc()).all()
+
+    return render_template('tv.html', tvs=tvs)
+
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
