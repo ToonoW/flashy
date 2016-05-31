@@ -61,6 +61,13 @@ def tv_category():
 
     return render_template('tv.html', tvs=tvs)
 
+# movie
+@main.route('/movie')
+def movie_category():
+    movies = Post.query.filter(Post.category == 'movie').order_by(Post.timestamp.desc()).all()
+
+    return render_template('tv.html', tvs=movies)
+
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
